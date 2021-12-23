@@ -25,11 +25,7 @@ public class panelHomePage extends javax.swing.JPanel {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 panelHomePage panelHomePage = null;
-                try {
-                    panelHomePage = new panelHomePage();
-                } catch (IOException ex) {
-                    Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                panelHomePage = new panelHomePage();
                 System.out.println("set true");
                 panelHomePage.setVisible(true);
             }

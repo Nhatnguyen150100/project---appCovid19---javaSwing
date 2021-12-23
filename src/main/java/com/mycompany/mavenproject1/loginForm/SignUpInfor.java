@@ -150,7 +150,11 @@ public class SignUpInfor extends javax.swing.JFrame {
         sendInfor.setText("Send your information");
         sendInfor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sendInforMouseClicked(evt);
+                try {
+                    sendInforMouseClicked(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -343,7 +347,7 @@ public class SignUpInfor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_namRadioBtnActionPerformed
 
-    private void sendInforMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendInforMouseClicked
+    private void sendInforMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_sendInforMouseClicked
         // TODO add your handling code here:
         String firstName = this.firstName.getText();
         String lastName = this.lastName.getText();
@@ -402,11 +406,7 @@ public class SignUpInfor extends javax.swing.JFrame {
             socket.close();
             dispose();
             NewSignUp login = null;
-            try {
-                login = new NewSignUp("");
-            } catch (IOException ex) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            login = new NewSignUp("");
             login.startLayout();
         }
     }//GEN-LAST:event_sendInforMouseClicked
@@ -452,7 +452,11 @@ public class SignUpInfor extends javax.swing.JFrame {
     public void startLayout(Socket socket){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUpInfor(socket).setVisible(true);
+                try {
+                    new SignUpInfor(socket).setVisible(true);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

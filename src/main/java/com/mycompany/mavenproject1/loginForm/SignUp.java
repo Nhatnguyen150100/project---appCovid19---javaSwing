@@ -143,7 +143,11 @@ public class SignUp extends javax.swing.JFrame {
         sign_upBtn.setText("Sign up");
         sign_upBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sign_upBtnMouseClicked(evt);
+                try {
+                    sign_upBtnMouseClicked(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         sign_upBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +185,11 @@ public class SignUp extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-back-48.png")); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                try {
+                    jButton1MouseClicked(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -240,19 +248,15 @@ public class SignUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_jButton1MouseClicked
         socketSignUp.close();
         dispose();
         NewSignUp login = null;
-        try {
-            login = new NewSignUp("");
-        } catch (IOException ex) {
-            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        login = new NewSignUp("");
         login.startLayout();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void sign_upBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_upBtnMouseClicked
+    private void sign_upBtnMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_sign_upBtnMouseClicked
         String newUserName;
         String newPassword;
         String confirmPassword;

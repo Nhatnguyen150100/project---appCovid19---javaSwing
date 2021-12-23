@@ -4,9 +4,20 @@
  */
 package com.mycompany.mavenproject1.loginForm;
 
-import java.awt.Color;
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.WebcamResolution;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,10 +26,14 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Objects;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import ortherLayout.panelHistoryPage;
 import ortherLayout.panelProfilePage;
 import ortherLayout.panelQrCodePage;
@@ -28,10 +43,16 @@ import ortherLayout.panelUpdatePage;
  *
  * @author nhatnguyen
  */
-public class HomePage extends javax.swing.JFrame {
+public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFactory{
     private Socket socket;
     private account user = new account();
     private panelHomePage homePage = new panelHomePage();
+
+    private WebcamPanel panel = null;
+    private Webcam webcam = null;
+
+    private static final long serialVersionUID = 6441489157408381878L;
+    private Executor executor = Executors.newSingleThreadExecutor(this);
 
     /**
      * Creates new form HomePage
@@ -127,9 +148,10 @@ public class HomePage extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
+        camera = new javax.swing.JPanel();
+        qrBtn = new javax.swing.JButton();
         panelUpdatePage = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -810,6 +832,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2.add(panelProfilePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
 
         panelQrCodePage.setBackground(new java.awt.Color(116, 214, 193));
+        panelQrCodePage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel10.setBackground(java.awt.Color.white);
 
@@ -824,83 +847,53 @@ public class HomePage extends javax.swing.JFrame {
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
+        panelQrCodePage.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 1013, -1));
+
         jLabel28.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        panelQrCodePage.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
 
         jLabel54.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        panelQrCodePage.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel55.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         jLabel55.setForeground(java.awt.Color.white);
         jLabel55.setText("PC COVID");
+        panelQrCodePage.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 56, -1, -1));
 
         jLabel56.setBackground(java.awt.Color.white);
         jLabel56.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 18)); // NOI18N
         jLabel56.setForeground(java.awt.Color.white);
         jLabel56.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
-
-        jLabel57.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/—Pngtree—cegah dan tangkal covid-19 dengan_6011555 (2).png")); // NOI18N
+        panelQrCodePage.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 110, -1, 17));
 
         jLabel58.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 36)); // NOI18N
         jLabel58.setForeground(java.awt.Color.white);
-        jLabel58.setText("Thực hiện quy định 5K");
+        jLabel58.setText("Quét QR  để thực hiện khai báo y tế");
+        panelQrCodePage.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
 
-        jLabel59.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-attention-96.png")); // NOI18N
+        jLabel59.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-qr-code-100.png")); // NOI18N
+        panelQrCodePage.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 112, 135));
 
-        javax.swing.GroupLayout panelQrCodePageLayout = new javax.swing.GroupLayout(panelQrCodePage);
-        panelQrCodePage.setLayout(panelQrCodePageLayout);
-        panelQrCodePageLayout.setHorizontalGroup(
-            panelQrCodePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelQrCodePageLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel54)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelQrCodePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel55)
-                    .addComponent(jLabel56))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(jLabel28)
-                .addGap(124, 124, 124))
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel59)
-                .addGroup(panelQrCodePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel58))
-                    .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel57)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelQrCodePageLayout.setVerticalGroup(
-            panelQrCodePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                .addGroup(panelQrCodePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(panelQrCodePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel54)
-                            .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel55)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel28)))
-                .addGap(21, 21, 21)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(panelQrCodePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelQrCodePageLayout.createSequentialGroup()
-                        .addComponent(jLabel58)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel57))
-                    .addComponent(jLabel59))
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
+        camera.setBackground(java.awt.Color.white);
+        camera.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.add(panelQrCodePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
+        qrBtn.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/6498715_application_code_mobile_qr_smartphone_icon (1) (1).png")); // NOI18N
+        qrBtn.setBorder(null);
+        qrBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                qrBtnMouseClicked(evt);
+            }
+        });
+        qrBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qrBtnActionPerformed(evt);
+            }
+        });
+        camera.add(qrBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 420));
+
+        panelQrCodePage.add(camera, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, -1));
+
+        jPanel2.add(panelQrCodePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, 850));
 
         panelUpdatePage.setBackground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.setPreferredSize(new java.awt.Dimension(991, 888));
@@ -1099,6 +1092,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void logOutbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutbtnMouseClicked
         // TODO add your handling code here:
+        closeWebcam();
         dispose();
         try {
             sendMessageToServer("5",socket);
@@ -1107,11 +1101,7 @@ public class HomePage extends javax.swing.JFrame {
         }
         
         NewSignUp login = null;
-        try {
-            login = new NewSignUp("");
-        } catch (IOException ex) {
-            Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        login = new NewSignUp("");
         try {
             login.startLayout();
         } catch (Exception e) {
@@ -1223,6 +1213,7 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             menuClicked(panelHomePage);
+            closeWebcam();
         } catch (Exception e) {
             System.out.println("can't start layout");
         }
@@ -1233,6 +1224,7 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             menuClicked(panelProfilePage);
+            closeWebcam();
             sendMessageToServer("1",socket);
             InputStream istream = null;
             try {
@@ -1257,6 +1249,7 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             menuClicked(panelUpdatePage);
+            closeWebcam();
             setInformationUpdateAccount();
         } catch (Exception e) {
             System.out.println("can't start layout");
@@ -1267,6 +1260,7 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             menuClicked(panelQrCodePage);
+            initWebcam();
         } catch (Exception e) {
             System.out.println("can't start layout");
         }
@@ -1304,10 +1298,6 @@ public class HomePage extends javax.swing.JFrame {
                 sendMessageToServer("4", socket);
                 String messageUpdate = createInforUpdateAccount();
                 sendMessageToServer(messageUpdate, socket);
-            } catch (Exception e) {
-            }            
-        }
-        try {
                 String receivedMessage;
                 InputStream istream = socket.getInputStream();
                 BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
@@ -1318,9 +1308,19 @@ public class HomePage extends javax.swing.JFrame {
                     "From Server",
                     JOptionPane.INFORMATION_MESSAGE);
                 }
-        } catch (Exception e) {
-        }
+            } catch (Exception e) {
+                System.out.println("can't send update information");
+            }            
+        }        
     }//GEN-LAST:event_sendInformationUpdateMouseClicked
+
+    private void qrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qrBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_qrBtnActionPerformed
+
+    private void qrBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qrBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_qrBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1447,7 +1447,14 @@ public class HomePage extends javax.swing.JFrame {
         panelQrCodePage.setVisible(false);
 //        updatepage.setVisible(false);
 
+ 
         jpanel.setVisible(true);
+    }
+
+    private void closeWebcam(){
+        if(webcam.isOpen()){
+           webcam.close();
+        }
     }
 
     
@@ -1511,6 +1518,61 @@ public class HomePage extends javax.swing.JFrame {
         firstName.setText(user.getFirstName());
         idUser.setText(user.getIdUser());
     }
+
+
+    private void initWebcam() {
+        Dimension size = WebcamResolution.QVGA.getSize();
+        webcam = Webcam.getWebcams().get(0); //0 is default webcam
+        webcam.setViewSize(size);
+
+        panel = new WebcamPanel(webcam);
+        panel.setPreferredSize(size);
+        panel.setFPSDisplayed(true);
+
+        camera.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 420));
+
+        executor.execute(this);
+    }
+
+    @Override
+    public void run() {
+        do {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Result result = null;
+            BufferedImage image = null;
+
+            if (webcam.isOpen()) {
+                if ((image = webcam.getImage()) == null) {
+                    continue;
+                }
+            }
+
+            LuminanceSource source = new BufferedImageLuminanceSource(image);
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+            try {
+                result = new MultiFormatReader().decode(bitmap);
+            } catch (NotFoundException e) {
+                //No result...
+            }
+
+            if (result != null) {
+                System.out.println(result.getText());
+            }
+        } while (true);
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread t = new Thread(r, "My Thread");
+        t.setDaemon(true);
+        return t;
+    }
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1519,6 +1581,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel birthDay;
     private javax.swing.JTextField birthDayUpdate;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel camera;
     private javax.swing.JLabel cardId;
     private javax.swing.JTextField cardIdInformationUpdate;
     private javax.swing.JLabel email;
@@ -1580,7 +1643,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
@@ -1612,6 +1674,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JPanel panelProfilePage;
     private javax.swing.JPanel panelQrCodePage;
     private javax.swing.JPanel panelUpdatePage;
+    private javax.swing.JButton qrBtn;
     private javax.swing.JButton sendInformationUpdate;
     private javax.swing.JPanel sidepane;
     private javax.swing.JLabel state;

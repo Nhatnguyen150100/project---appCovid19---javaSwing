@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="bridj-0.7.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Lib/jar_files/bridj-0.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lib/jar_files/slf4j-api-1.7.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lib/jar_files/webcam-capture-0.3.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lib/slf4j-log4j12-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lib/slf4j-api-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Lib/javase-3.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
