@@ -369,7 +369,7 @@ public class SignUp extends javax.swing.JFrame {
         receiveMessage = String.valueOf(receiveRead.readLine());
         receiveMessage = removeNonAscii(receiveMessage);
         receiveMessage = replaceUnreadable(receiveMessage);
-        if(!Objects.equals(receiveMessage, "0")) //receive from server
+        if(!receiveMessage.equals("")) //receive from server
         {
             System.out.print("from server: ");
             System.out.println(receiveMessage); // displaying at DOS prompt
@@ -378,8 +378,7 @@ public class SignUp extends javax.swing.JFrame {
 //                idUserFromSerVer = removeNonAscii(idUserFromSerVer);
 //                idUserFromSerVer = replaceUnreadable(idUserFromSerVer);
                 dispose();
-                SignUpInfor signInfor;
-                signInfor = new SignUpInfor();
+                SignUpInfor signInfor = new SignUpInfor();
                 signInfor.startLayout(socketSignUp);
             }else{
                 JOptionPane.showMessageDialog(jPanel3,

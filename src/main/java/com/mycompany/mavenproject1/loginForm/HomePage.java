@@ -25,14 +25,20 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 import ortherLayout.panelHistoryPage;
 import ortherLayout.panelProfilePage;
@@ -60,11 +66,16 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     public HomePage(Socket socket) throws IOException {
 //        setLocation(null);
         this.socket = socket;
-        initComponents();     
+        initComponents();
+//        initWebcam();      
 //        panelHome.add(homePage);
         menuClicked(panelHomePage);
         receivedMeessageFromServer(this.user);
         setTextNameAndId(this.user);
+        initWebcam(); 
+        if(webcam.isOpen()){
+           closeWebcam();
+        }
     }
 
     public HomePage(){}
@@ -152,6 +163,16 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel59 = new javax.swing.JLabel();
         camera = new javax.swing.JPanel();
         qrBtn = new javax.swing.JButton();
+        panelHistoryPage = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        historyScroll = new javax.swing.JScrollPane();
+        tableHistory = new javax.swing.JTable();
         panelUpdatePage = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -409,6 +430,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 paneHistoryMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paneHistoryMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 paneHistoryMouseExited(evt);
@@ -895,6 +919,111 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jPanel2.add(panelQrCodePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, 850));
 
+        panelHistoryPage.setBackground(new java.awt.Color(116, 214, 193));
+
+        jPanel11.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+
+        jLabel57.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+
+        jLabel60.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+
+        jLabel61.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel61.setForeground(java.awt.Color.white);
+        jLabel61.setText("PC COVID");
+
+        jLabel62.setBackground(java.awt.Color.white);
+        jLabel62.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 18)); // NOI18N
+        jLabel62.setForeground(java.awt.Color.white);
+        jLabel62.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
+
+        jLabel64.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 36)); // NOI18N
+        jLabel64.setForeground(java.awt.Color.white);
+        jLabel64.setText("Lịch sử di chuyển của bạn:");
+
+        jLabel65.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/5728208_flight_route_tourism_transmit_travel_icon.png")); // NOI18N
+
+        historyScroll.setBackground(java.awt.Color.white);
+        historyScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        historyScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        historyScroll.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+
+        tableHistory.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Location", "Time"
+            }
+        ));
+        historyScroll.setViewportView(tableHistory);
+
+        javax.swing.GroupLayout panelHistoryPageLayout = new javax.swing.GroupLayout(panelHistoryPage);
+        panelHistoryPage.setLayout(panelHistoryPageLayout);
+        panelHistoryPageLayout.setHorizontalGroup(
+            panelHistoryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistoryPageLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelHistoryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel61)
+                    .addComponent(jLabel62))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(jLabel57)
+                .addGap(124, 124, 124))
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelHistoryPageLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel65)
+                .addGap(18, 18, 18)
+                .addGroup(panelHistoryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel64)
+                    .addComponent(historyScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelHistoryPageLayout.setVerticalGroup(
+            panelHistoryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHistoryPageLayout.createSequentialGroup()
+                .addGroup(panelHistoryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelHistoryPageLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(panelHistoryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel60)
+                            .addGroup(panelHistoryPageLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel61)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelHistoryPageLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel57)))
+                .addGap(21, 21, 21)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelHistoryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelHistoryPageLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel64)
+                        .addGap(34, 34, 34)
+                        .addComponent(historyScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelHistoryPageLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel65)))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(panelHistoryPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
+
         panelUpdatePage.setBackground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.setPreferredSize(new java.awt.Dimension(991, 888));
         panelUpdatePage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1092,22 +1221,29 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void logOutbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutbtnMouseClicked
         // TODO add your handling code here:
-        closeWebcam();
-        dispose();
-        try {
-            sendMessageToServer("5",socket);
-        } catch (Exception e) {
-            System.out.println("can't send choice(5) to Server");
+        int result = JOptionPane.showConfirmDialog(jLabel3,
+                        "Bạn đã có muốn thoát PC COVID?",
+                        "Xác nhận",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.YES_OPTION){
+            closeWebcam();
+            dispose();
+            try {
+                sendMessageToServer("5",socket);
+            } catch (Exception e) {
+                System.out.println("can't send choice(5) to Server");
+            }
+
+            NewSignUp login = null;
+            login = new NewSignUp("");
+            try {
+                login.startLayout();
+            } catch (Exception e) {
+                System.out.println("can't start NewSignUp layout");
+            }
         }
-        
-        NewSignUp login = null;
-        login = new NewSignUp("");
-        try {
-            login.startLayout();
-        } catch (Exception e) {
-            System.out.println("can't start NewSignUp layout");
-        }
-        
+               
     }//GEN-LAST:event_logOutbtnMouseClicked
 
     private void paneHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneHomeMouseEntered
@@ -1213,9 +1349,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
         try {
             menuClicked(panelHomePage);
-            closeWebcam();
+            if(webcam.isOpen()){
+                closeWebcam();
+            } 
         } catch (Exception e) {
-            System.out.println("can't start layout");
+            System.out.println("can't start layout paneHomeMouseClicked");
         }
         
     }//GEN-LAST:event_paneHomeMouseClicked
@@ -1223,8 +1361,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private void paneProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneProfileMouseClicked
         // TODO add your handling code here:
         try {
-            menuClicked(panelProfilePage);
-            closeWebcam();
+            menuClicked(panelProfilePage);          
             sendMessageToServer("1",socket);
             InputStream istream = null;
             try {
@@ -1239,9 +1376,12 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 System.out.println("can't check out put");
             }
             setInformationUser();
-            setTextNameAndId(user); 
+            setTextNameAndId(user);
+            if(webcam.isOpen()){
+                closeWebcam();
+            } 
         } catch (Exception e) {
-            System.out.println("can't start layout");
+            System.out.println("can't start layout paneProfileMouseClicked");
         }
     }//GEN-LAST:event_paneProfileMouseClicked
 
@@ -1249,10 +1389,12 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
         try {
             menuClicked(panelUpdatePage);
-            closeWebcam();
             setInformationUpdateAccount();
+            if(webcam.isOpen()){
+                closeWebcam();
+            } 
         } catch (Exception e) {
-            System.out.println("can't start layout");
+            System.out.println("can't start layout paneUpdateMouseClicked");
         }
     }//GEN-LAST:event_paneUpdateMouseClicked
 
@@ -1262,7 +1404,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             menuClicked(panelQrCodePage);
             initWebcam();
         } catch (Exception e) {
-            System.out.println("can't start layout");
+            System.out.println("can't start layout paneQrCodeMouseClicked");
         }
     }//GEN-LAST:event_paneQrCodeMouseClicked
 
@@ -1322,6 +1464,20 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
     }//GEN-LAST:event_qrBtnMouseClicked
 
+    private void paneHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneHistoryMouseClicked
+        // TODO add your handling code here:
+        try {
+            menuClicked(panelHistoryPage);
+            sendMessageToServer("3", socket);
+            showHistory();
+            if(webcam.isOpen()){
+                closeWebcam();
+            }            
+        } catch (Exception e) {
+            System.out.println("can't start layout paneHistoryMouseClicked");
+        }
+    }//GEN-LAST:event_paneHistoryMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1355,7 +1511,66 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 //                new HomePage().setVisible(true);
 //            }
 //        });
-//    } 
+//    }
+
+    private void showHistory(){
+        try {
+            String receivedMessage;
+            InputStream istream = socket.getInputStream();
+            BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
+            receivedMessage = getMessageFromServer(receiveRead,socket);
+            if(!receivedMessage.equals("")){
+                inputLocationAndTime(receivedMessage);
+            }
+        } catch (Exception e) {
+        }
+        
+    }
+   
+    private void inputLocationAndTime(String receiveMessage) {
+            int str_lent = 0;           
+            ArrayList<String[]> locationAndTimeList = new ArrayList<String[]>();
+            char c = '_';
+            for(int i =0; i < receiveMessage.length(); i++){
+                if(receiveMessage.charAt(i) == c){
+                    str_lent++;
+                }
+            }
+            if(str_lent==0){
+                System.out.println("----------Lich su di chuyen cua ban----------");
+                System.out.println("Khong co lich su di chuyen");
+//                historyScroll.add(receiveMessage, new JLabel("Khong co lich su di chuyen"));
+            }else{
+                System.out.println("co di chuyen");
+                
+                String[] listHistory = receiveMessage.split("_");
+                for(int i =0; i < (str_lent+1); i+=2){
+                    locationAndTime index = new locationAndTime();
+                    index.setLocation(listHistory[i]);
+                    index.setTime(listHistory[i+1]);
+                    locationAndTimeList.add(new String[]{index.getLocation(),index.getTime()});
+                }
+                System.out.println("----------Lich su di chuyen cua ban----------");
+                System.out.println("Location"+"\t\t\t\t\t\t\t"+"Time");
+                tableHistory.setRowHeight(0,80);
+                tableHistory.setRowHeight(30);
+                ArrayList<String> columns = new ArrayList<String>();
+                columns.add("Location");
+                columns.add("Time");              
+                TableModel tableModel = new DefaultTableModel(locationAndTimeList.toArray(new Object[][]{}),columns.toArray());
+//                model.addRow();
+                tableHistory.setModel(tableModel);
+                
+//                for (int i = 0; i < locationAndTimeList.size(); i++){
+//                    System.out.print(locationAndTimeList.get(i).getLocation()+"\t\t\t\t\t"+locationAndTimeList.get(i).getTime());                  
+//                    System.out.println("");
+//                }
+                
+                locationAndTimeList.clear();
+            }
+
+    } 
+
 
     private void setInformationUpdateAccount(){
         firstNameUpdate.setText(user.getFirstName());
@@ -1445,7 +1660,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
           panelProfilePage.setVisible(false);
         panelUpdatePage.setVisible(false);
         panelQrCodePage.setVisible(false);
-//        updatepage.setVisible(false);
+        panelHistoryPage.setVisible(false);
 
  
         jpanel.setVisible(true);
@@ -1453,6 +1668,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void closeWebcam(){
         if(webcam.isOpen()){
+            System.out.println("dong webcam");
            webcam.close();
         }
     }
@@ -1470,7 +1686,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         try {
                 checkOutPut(receiveRead,socket,user);
         } catch (Exception e) {
-                System.out.println("can't check out put");
+                System.out.println("can't check out put receivedMeessageFromServer");
         }
     }
 
@@ -1534,11 +1750,43 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         executor.execute(this);
     }
 
+    private void sendQrCodeToserver(String qrcode){
+        try {
+            LocalDateTime timeInLocation = LocalDateTime.now();
+            int result = JOptionPane.showConfirmDialog(jLabel3,
+                        "Bạn đã đến đây vào "+timeInLocation+" ?",
+                        "Xác nhận",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                sendMessageToServer("2",socket);
+                sendMessageToServer(createAccountMessage(qrcode,String.valueOf(timeInLocation)), socket);
+                String receivedMessage;
+                InputStream istream = socket.getInputStream();
+                BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
+                receivedMessage = getMessageFromServer(receiveRead,socket);
+                try {
+                    if(!receivedMessage.equals("")){
+                    JOptionPane.showMessageDialog(jLabel3,
+                    receivedMessage,
+                    "From Server",
+                    JOptionPane.INFORMATION_MESSAGE);
+                }
+                } catch (Exception e) {
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("can't get time");
+        }
+            
+    }
+    
+
     @Override
     public void run() {
         do {
             try {
-                Thread.sleep(100);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -1563,6 +1811,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
             if (result != null) {
                 System.out.println(result.getText());
+                sendQrCodeToserver(result.getText());
             }
         } while (true);
     }
@@ -1572,6 +1821,10 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         Thread t = new Thread(r, "My Thread");
         t.setDaemon(true);
         return t;
+    }
+
+    private String createAccountMessage(String name, String password){
+        return name+ "_" +password;
     }
   
 
@@ -1590,6 +1843,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JTextField firstNameUpdate;
     private javax.swing.JLabel fullName;
     private javax.swing.JLabel gender;
+    private javax.swing.JScrollPane historyScroll;
     private javax.swing.JLabel idUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1643,14 +1897,21 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1670,6 +1931,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel paneProfile;
     private javax.swing.JPanel paneQrCode;
     private javax.swing.JPanel paneUpdate;
+    private javax.swing.JPanel panelHistoryPage;
     private javax.swing.JPanel panelHomePage;
     private javax.swing.JPanel panelProfilePage;
     private javax.swing.JPanel panelQrCodePage;
@@ -1678,5 +1940,6 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JButton sendInformationUpdate;
     private javax.swing.JPanel sidepane;
     private javax.swing.JLabel state;
+    private javax.swing.JTable tableHistory;
     // End of variables declaration//GEN-END:variables
 }
