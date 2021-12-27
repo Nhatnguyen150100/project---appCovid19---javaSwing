@@ -67,15 +67,8 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 //        setLocation(null);
         this.socket = socket;
         initComponents();
-//        initWebcam();      
-//        panelHome.add(homePage);
         menuClicked(panelHomePage);
-        receivedMeessageFromServer(this.user);
-        setTextNameAndId(this.user);
-        initWebcam(); 
-        if(webcam.isOpen()){
-           closeWebcam();
-        }
+        receivedMeessageFromServer(this.user);      
     }
 
     public HomePage(){}
@@ -101,6 +94,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel6 = new javax.swing.JLabel();
         firstName = new javax.swing.JLabel();
         logOutbtn = new javax.swing.JButton();
+        paneNotification = new javax.swing.JPanel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
         paneHome = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -119,6 +115,17 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel20 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        panelNotificationPage = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        waringMessage = new javax.swing.JTextPane();
         panelHomePage = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -278,6 +285,38 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         });
         sidepane.add(logOutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 750, 170, 52));
 
+        paneNotification.setBackground(new java.awt.Color(152, 234, 217));
+        paneNotification.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        paneNotification.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                paneNotificationMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                paneNotificationMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paneNotificationMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                paneNotificationMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                paneNotificationMouseEntered(evt);
+            }
+        });
+        paneNotification.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel63.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/icons8-notification-60 (1).png")); // NOI18N
+        jLabel63.setText("jLabel7");
+        paneNotification.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 49, -1));
+
+        jLabel66.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
+        jLabel66.setForeground(java.awt.Color.white);
+        jLabel66.setText("Notification");
+        paneNotification.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+
+        sidepane.add(paneNotification, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 380, 60));
+
         paneHome.setBackground(new java.awt.Color(152, 234, 217));
         paneHome.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         paneHome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -312,9 +351,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             .addGroup(paneHomeLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel8)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 161, Short.MAX_VALUE))
         );
         paneHomeLayout.setVerticalGroup(
             paneHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +409,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        sidepane.add(paneProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 380, 60));
+        sidepane.add(paneProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 380, 60));
 
         paneQrCode.setBackground(new java.awt.Color(152, 234, 217));
         paneQrCode.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -420,7 +459,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addGap(6, 6, 6))
         );
 
-        sidepane.add(paneQrCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 380, 60));
+        sidepane.add(paneQrCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 380, 60));
 
         paneHistory.setBackground(new java.awt.Color(152, 234, 217));
         paneHistory.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -468,7 +507,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        sidepane.add(paneHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 380, 60));
+        sidepane.add(paneHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 380, 60));
 
         paneUpdate.setBackground(new java.awt.Color(152, 234, 217));
         paneUpdate.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -517,7 +556,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                     .addComponent(jLabel16)))
         );
 
-        sidepane.add(paneUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 380, 60));
+        sidepane.add(paneUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 380, 60));
 
         jLabel20.setBackground(java.awt.Color.white);
         jLabel20.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
@@ -532,7 +571,78 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jPanel2.setBackground(java.awt.Color.white);
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelHomePage.setBackground(new java.awt.Color(116, 214, 193));
+        panelNotificationPage.setBackground(new java.awt.Color(220, 153, 141));
+        panelNotificationPage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel12.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+
+        panelNotificationPage.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 1013, -1));
+
+        jLabel67.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        panelNotificationPage.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
+
+        jLabel68.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        panelNotificationPage.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
+
+        jLabel69.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel69.setForeground(java.awt.Color.white);
+        jLabel69.setText("PC COVID");
+        panelNotificationPage.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 56, -1, -1));
+
+        jLabel70.setBackground(java.awt.Color.white);
+        jLabel70.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 18)); // NOI18N
+        jLabel70.setForeground(java.awt.Color.white);
+        jLabel70.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
+        panelNotificationPage.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 110, -1, 17));
+
+        jLabel72.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 36)); // NOI18N
+        jLabel72.setForeground(java.awt.Color.white);
+        jLabel72.setText("Thông báo");
+        panelNotificationPage.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+
+        jLabel73.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/icons8-notification-94.png")); // NOI18N
+        panelNotificationPage.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+
+        jPanel13.setBackground(java.awt.Color.white);
+
+        waringMessage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(220, 153, 141), 3));
+        waringMessage.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jScrollPane1.setViewportView(waringMessage);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelNotificationPage.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 720, 460));
+
+        jPanel2.add(panelNotificationPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, 840));
+
+        panelHomePage.setBackground(new java.awt.Color(220, 153, 141));
+        panelHomePage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(java.awt.Color.white);
 
@@ -547,86 +657,41 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
+        panelHomePage.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 1013, -1));
+
         jLabel18.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        panelHomePage.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        panelHomePage.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         jLabel19.setForeground(java.awt.Color.white);
         jLabel19.setText("PC COVID");
+        panelHomePage.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 56, -1, -1));
 
         jLabel3.setBackground(java.awt.Color.white);
         jLabel3.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 18)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
         jLabel3.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
+        panelHomePage.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 110, -1, 17));
 
         jLabel21.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/—Pngtree—cegah dan tangkal covid-19 dengan_6011555 (2).png")); // NOI18N
+        panelHomePage.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 36)); // NOI18N
         jLabel22.setForeground(java.awt.Color.white);
         jLabel22.setText("Thực hiện quy định 5K");
+        panelHomePage.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
         jLabel37.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-attention-96.png")); // NOI18N
+        panelHomePage.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
-        javax.swing.GroupLayout panelHomePageLayout = new javax.swing.GroupLayout(panelHomePage);
-        panelHomePage.setLayout(panelHomePageLayout);
-        panelHomePageLayout.setHorizontalGroup(
-            panelHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHomePageLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addGap(124, 124, 124))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelHomePageLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel37)
-                .addGroup(panelHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelHomePageLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel22))
-                    .addGroup(panelHomePageLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel21)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelHomePageLayout.setVerticalGroup(
-            panelHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHomePageLayout.createSequentialGroup()
-                .addGroup(panelHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelHomePageLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(panelHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addGroup(panelHomePageLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelHomePageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel18)))
-                .addGap(21, 21, 21)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(panelHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelHomePageLayout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel21))
-                    .addComponent(jLabel37))
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
+        jPanel2.add(panelHomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, 840));
 
-        jPanel2.add(panelHomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
-
-        panelProfilePage.setBackground(new java.awt.Color(116, 214, 193));
+        panelProfilePage.setBackground(new java.awt.Color(220, 153, 141));
         panelProfilePage.setPreferredSize(new java.awt.Dimension(991, 888));
+        panelProfilePage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel8.setBackground(java.awt.Color.white);
 
@@ -641,78 +706,101 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
+        panelProfilePage.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 991, -1));
+
         jLabel38.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        panelProfilePage.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 12, -1, -1));
 
         jLabel39.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        panelProfilePage.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel40.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         jLabel40.setForeground(java.awt.Color.white);
         jLabel40.setText("PC COVID");
+        panelProfilePage.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 56, -1, -1));
 
         jLabel41.setBackground(java.awt.Color.white);
         jLabel41.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 18)); // NOI18N
         jLabel41.setForeground(java.awt.Color.white);
         jLabel41.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
+        panelProfilePage.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 110, -1, 17));
 
         jLabel42.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 48)); // NOI18N
         jLabel42.setForeground(java.awt.Color.white);
         jLabel42.setText("Thông tin cơ bản");
+        panelProfilePage.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 246, -1, -1));
 
         jLabel43.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel43.setForeground(java.awt.Color.white);
         jLabel43.setText("Trạng thái dịch tễ:");
+        panelProfilePage.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 700, -1, -1));
 
         jLabel44.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel44.setForeground(java.awt.Color.white);
         jLabel44.setText("Họ và tên:");
+        panelProfilePage.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 391, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel45.setForeground(java.awt.Color.white);
         jLabel45.setText("Số CCCD:");
+        panelProfilePage.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel46.setForeground(java.awt.Color.white);
         jLabel46.setText("Ngày sinh:");
+        panelProfilePage.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 591, -1, -1));
 
         jLabel47.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel47.setForeground(java.awt.Color.white);
         jLabel47.setText("Giới tính:");
+        panelProfilePage.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 700, -1, -1));
 
         jLabel48.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel48.setForeground(java.awt.Color.white);
         jLabel48.setText("Số điện thoại:");
+        panelProfilePage.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, -1, -1));
 
         jLabel49.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel49.setForeground(java.awt.Color.white);
         jLabel49.setText("Email:");
+        panelProfilePage.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(503, 494, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
         jLabel50.setForeground(java.awt.Color.white);
         jLabel50.setText("Địa chỉ:");
+        panelProfilePage.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(503, 591, -1, -1));
 
         fullName.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         fullName.setForeground(java.awt.Color.white);
+        panelProfilePage.add(fullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 273, 35));
 
         cardId.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         cardId.setForeground(java.awt.Color.white);
+        panelProfilePage.add(cardId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 283, 30));
 
         gender.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         gender.setForeground(java.awt.Color.white);
+        panelProfilePage.add(gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 700, 186, 30));
 
         birthDay.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         birthDay.setForeground(java.awt.Color.white);
+        panelProfilePage.add(birthDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 590, 196, 30));
 
         numberPhone.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         numberPhone.setForeground(java.awt.Color.white);
+        panelProfilePage.add(numberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 390, 293, 35));
 
         email.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         email.setForeground(java.awt.Color.white);
+        panelProfilePage.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 490, 368, 40));
 
         address.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         address.setForeground(java.awt.Color.white);
+        panelProfilePage.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 590, 342, 40));
 
         state.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 22)); // NOI18N
         state.setForeground(java.awt.Color.white);
+        panelProfilePage.add(state, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 700, 206, 30));
 
         jPanel9.setBackground(java.awt.Color.white);
 
@@ -727,135 +815,14 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jLabel51.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-list-100.png")); // NOI18N
+        panelProfilePage.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 322, 412, -1));
 
-        javax.swing.GroupLayout panelProfilePageLayout = new javax.swing.GroupLayout(panelProfilePage);
-        panelProfilePage.setLayout(panelProfilePageLayout);
-        panelProfilePageLayout.setHorizontalGroup(
-            panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProfilePageLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel39)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel41))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel38)
-                .addGap(120, 120, 120))
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProfilePageLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jLabel47)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel43)
-                .addGap(18, 18, 18)
-                .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProfilePageLayout.createSequentialGroup()
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProfilePageLayout.createSequentialGroup()
-                        .addContainerGap(491, Short.MAX_VALUE)
-                        .addComponent(jLabel48)
-                        .addGap(18, 18, 18)
-                        .addComponent(numberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProfilePageLayout.createSequentialGroup()
-                        .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProfilePageLayout.createSequentialGroup()
-                                .addComponent(jLabel45)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cardId, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(panelProfilePageLayout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelProfilePageLayout.createSequentialGroup()
-                                        .addComponent(jLabel44)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fullName, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelProfilePageLayout.createSequentialGroup()
-                                        .addComponent(jLabel46)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(birthDay, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(32, 32, 32)))
-                        .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelProfilePageLayout.createSequentialGroup()
-                                .addComponent(jLabel50)
-                                .addGap(18, 18, 18)
-                                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
-                            .addGroup(panelProfilePageLayout.createSequentialGroup()
-                                .addComponent(jLabel49)
-                                .addGap(18, 18, 18)
-                                .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(24, 24, 24))
-            .addGroup(panelProfilePageLayout.createSequentialGroup()
-                .addGap(193, 193, 193)
-                .addComponent(jLabel51)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelProfilePageLayout.setVerticalGroup(
-            panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelProfilePageLayout.createSequentialGroup()
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelProfilePageLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel39)
-                            .addGroup(panelProfilePageLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel40)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelProfilePageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel38)))
-                .addGap(21, 21, 21)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelProfilePageLayout.createSequentialGroup()
-                        .addComponent(jLabel42)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel51))
-                .addGap(45, 45, 45)
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(fullName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel48)
-                        .addComponent(numberPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel45)
-                    .addComponent(jLabel49)
-                    .addComponent(cardId, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(52, 52, 52)
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel46)
-                    .addComponent(jLabel50)
-                    .addComponent(birthDay, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59)
-                .addGroup(panelProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel47)
-                    .addComponent(jLabel43)
-                    .addComponent(gender, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(state, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(143, 143, 143))
-        );
+        jLabel51.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-list-100.png")); // NOI18N
+        panelProfilePage.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 246, -1, -1));
 
         jPanel2.add(panelProfilePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
 
-        panelQrCodePage.setBackground(new java.awt.Color(116, 214, 193));
+        panelQrCodePage.setBackground(new java.awt.Color(220, 153, 141));
         panelQrCodePage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel10.setBackground(java.awt.Color.white);
@@ -919,7 +886,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jPanel2.add(panelQrCodePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, 850));
 
-        panelHistoryPage.setBackground(new java.awt.Color(116, 214, 193));
+        panelHistoryPage.setBackground(new java.awt.Color(220, 153, 141));
 
         jPanel11.setBackground(java.awt.Color.white);
 
@@ -1024,7 +991,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jPanel2.add(panelHistoryPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
 
-        panelUpdatePage.setBackground(new java.awt.Color(116, 214, 193));
+        panelUpdatePage.setBackground(new java.awt.Color(220, 153, 141));
         panelUpdatePage.setPreferredSize(new java.awt.Dimension(991, 888));
         panelUpdatePage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1119,7 +1086,6 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         panelUpdatePage.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 246, -1, -1));
 
         firstNameUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
-        firstNameUpdate.setForeground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.add(firstNameUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 251, 35));
 
         jLabel52.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
@@ -1128,11 +1094,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         panelUpdatePage.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, -1, -1));
 
         lastNameUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
-        lastNameUpdate.setForeground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.add(lastNameUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 470, 251, 35));
 
         cardIdInformationUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
-        cardIdInformationUpdate.setForeground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.add(cardIdInformationUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 560, 251, 35));
 
         jLabel53.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -1141,23 +1105,19 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         panelUpdatePage.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 690, -1, -1));
 
         birthDayUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
-        birthDayUpdate.setForeground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.add(birthDayUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 251, 35));
 
         numberPhoneUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
-        numberPhoneUpdate.setForeground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.add(numberPhoneUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, 251, 35));
 
         emailUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
-        emailUpdate.setForeground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.add(emailUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 470, 251, 35));
 
         addressUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
-        addressUpdate.setForeground(new java.awt.Color(116, 214, 193));
         panelUpdatePage.add(addressUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 560, 251, 35));
 
         sendInformationUpdate.setFont(new java.awt.Font("Ubuntu", 1, 30)); // NOI18N
-        sendInformationUpdate.setForeground(new java.awt.Color(116, 214, 193));
+        sendInformationUpdate.setForeground(new java.awt.Color(220, 153, 141));
         sendInformationUpdate.setText("Send your information");
         sendInformationUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1221,13 +1181,14 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void logOutbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutbtnMouseClicked
         // TODO add your handling code here:
-        int result = JOptionPane.showConfirmDialog(jLabel3,
+            closeWebcam();
+        int result = JOptionPane.showConfirmDialog(panelHomePage,
                         "Bạn đã có muốn thoát PC COVID?",
                         "Xác nhận",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
         if(result == JOptionPane.YES_OPTION){
-            closeWebcam();
+
             dispose();
             try {
                 sendMessageToServer("5",socket);
@@ -1478,6 +1439,40 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_paneHistoryMouseClicked
 
+    private void paneNotificationMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneNotificationMousePressed
+        // TODO add your handling code here:
+        paneNotification.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneNotificationMousePressed
+
+    private void paneNotificationMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneNotificationMouseReleased
+        // TODO add your handling code here:
+        paneNotification.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneNotificationMouseReleased
+
+    private void paneNotificationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneNotificationMouseClicked
+        // TODO add your handling code here:
+        try {
+            menuClicked(panelNotificationPage);
+            sendMessageToServer("6", socket);
+            receivedMeessageWaringFromServer();
+//            showHistory();
+            if(webcam.isOpen()){
+                closeWebcam();
+            }            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_paneNotificationMouseClicked
+
+    private void paneNotificationMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneNotificationMouseExited
+        // TODO add your handling code here:
+        paneNotification.setBackground(new Color(152,234,217));
+    }//GEN-LAST:event_paneNotificationMouseExited
+
+    private void paneNotificationMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneNotificationMouseEntered
+        // TODO add your handling code here:
+        paneNotification.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneNotificationMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -1552,8 +1547,8 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 }
                 System.out.println("----------Lich su di chuyen cua ban----------");
                 System.out.println("Location"+"\t\t\t\t\t\t\t"+"Time");
-                tableHistory.setRowHeight(0,80);
-                tableHistory.setRowHeight(30);
+//                tableHistory.setRowHeight(0,80);
+                tableHistory.setRowHeight(60);
                 ArrayList<String> columns = new ArrayList<String>();
                 columns.add("Location");
                 columns.add("Time");              
@@ -1619,7 +1614,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         email.setText(user.getEmail());
         address.setText(user.getAddress());
         state.setText(user.getState());
-        state.setBackground(Color.RED);
+        if(user.getState().equals("F1")){
+            state.setForeground(Color.RED);
+        }       
     }
     
 
@@ -1656,12 +1653,12 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     }
 
     public void menuClicked(JPanel jpanel) throws IOException{
-          panelHomePage.setVisible(false);
-          panelProfilePage.setVisible(false);
+        panelHomePage.setVisible(false);
+        panelProfilePage.setVisible(false);
         panelUpdatePage.setVisible(false);
         panelQrCodePage.setVisible(false);
         panelHistoryPage.setVisible(false);
-
+        panelNotificationPage.setVisible(false);
  
         jpanel.setVisible(true);
     }
@@ -1670,6 +1667,39 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         if(webcam.isOpen()){
             System.out.println("dong webcam");
            webcam.close();
+        }
+    }
+
+    public void receivedMeessageWaringFromServer(){
+        InputStream istream = null;
+        try {
+            istream = socket.getInputStream();
+        } catch (IOException ex) {
+            Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        BufferedReader receiveReadWaring = new BufferedReader(new InputStreamReader(istream), 1024);
+        try {
+                checkOutPutWaring(receiveReadWaring,socket);
+        } catch (Exception e) {
+                System.out.println("can't check out put receivedMeessageFromServer");
+        }
+    }
+
+
+    private void checkOutPutWaring(BufferedReader receiveRead, Socket socket) throws IOException {
+        String receiveWaringMessage;
+        receiveWaringMessage = String.valueOf(receiveRead.readLine());
+        receiveWaringMessage = removeNonAscii(receiveWaringMessage);
+        receiveWaringMessage = replaceUnreadable(receiveWaringMessage);
+        if(!Objects.equals(receiveWaringMessage, "0")) //receive from server
+        {
+            System.out.print("from server: ");
+            System.out.println(receiveWaringMessage);
+            waringMessage.setText(receiveWaringMessage); // displaying at DOS prompt
+//            JOptionPane.showMessageDialog(panelHomePage,
+//                    receiveWaringMessage,
+//                    "From Server",
+//                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -1728,6 +1758,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         user.setEmail(listInfor[7]);
         user.setAddress(listInfor[8]);
         user.setState(listInfor[9]);
+        setTextNameAndId(user);
     }
 
     private void setTextNameAndId(account user){
@@ -1904,14 +1935,24 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1920,6 +1961,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastNameUpdate;
     private javax.swing.JButton logOutbtn;
     private javax.swing.JRadioButton namBtnUpdate;
@@ -1928,11 +1970,13 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JTextField numberPhoneUpdate;
     private javax.swing.JPanel paneHistory;
     private javax.swing.JPanel paneHome;
+    private javax.swing.JPanel paneNotification;
     private javax.swing.JPanel paneProfile;
     private javax.swing.JPanel paneQrCode;
     private javax.swing.JPanel paneUpdate;
     private javax.swing.JPanel panelHistoryPage;
     private javax.swing.JPanel panelHomePage;
+    private javax.swing.JPanel panelNotificationPage;
     private javax.swing.JPanel panelProfilePage;
     private javax.swing.JPanel panelQrCodePage;
     private javax.swing.JPanel panelUpdatePage;
@@ -1941,5 +1985,6 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel sidepane;
     private javax.swing.JLabel state;
     private javax.swing.JTable tableHistory;
+    private javax.swing.JTextPane waringMessage;
     // End of variables declaration//GEN-END:variables
 }
