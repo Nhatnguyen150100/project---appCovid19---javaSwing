@@ -1615,6 +1615,8 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         address.setText(user.getAddress());
         state.setText(user.getState());
         if(user.getState().equals("F1")){
+            state.setForeground(Color.YELLOW);
+        }else if(user.getState().equals("F0")){
             state.setForeground(Color.RED);
         }       
     }
