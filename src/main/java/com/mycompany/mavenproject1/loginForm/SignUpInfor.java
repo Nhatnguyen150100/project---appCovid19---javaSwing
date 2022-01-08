@@ -4,6 +4,8 @@
  */
 package com.mycompany.mavenproject1.loginForm;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +32,10 @@ public class SignUpInfor extends javax.swing.JFrame {
     public SignUpInfor(Socket socketSignUp) throws IOException{
         socket = socketSignUp;
         initComponents();
+        Dimension objDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int iCoordX = (objDimension.width - this.getWidth()) / 2;
+        int iCoordY = (objDimension.height - this.getHeight()) / 2;
+        this.setLocation(iCoordX, iCoordY);
     }
 
     public SignUpInfor(){

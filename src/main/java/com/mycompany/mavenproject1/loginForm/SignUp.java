@@ -4,6 +4,9 @@
  */
 package com.mycompany.mavenproject1.loginForm;
 
+import static com.mycompany.mavenproject1.loginForm.NewSignUp.convertByteToHex;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +34,10 @@ public class SignUp extends javax.swing.JFrame {
     public SignUp(Socket socket) {
         socketSignUp = socket;
         initComponents();
+        Dimension objDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int iCoordX = (objDimension.width - this.getWidth()) / 2;
+        int iCoordY = (objDimension.height - this.getHeight()) / 2;
+        this.setLocation(iCoordX, iCoordY);
     }
 
     public SignUp() {
@@ -298,7 +307,8 @@ public class SignUp extends javax.swing.JFrame {
                 
                 InputStream istream = socketSignUp.getInputStream();
                 BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
-                String newAccountMessage = createAccountMessage(newUserName, newPassword);
+                String hardPassword = getSHAHash(newPassword);
+                String newAccountMessage = createAccountMessage(newUserName, hardPassword);
                 try {
                     sendMessageToServer(newAccountMessage, socketSignUp);
                     checkOutPut(receiveRead,socketSignUp);
@@ -351,6 +361,16 @@ public class SignUp extends javax.swing.JFrame {
                 new SignUp(socket).setVisible(true);
             }
         });
+    }
+
+    public static String getSHAHash(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void sendMessageToServer(String str, Socket sock) throws IOException {

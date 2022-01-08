@@ -4,6 +4,8 @@
  */
 package com.mycompany.mavenproject1.loginForm;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +13,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +34,10 @@ public class NewSignUp extends javax.swing.JFrame {
     public NewSignUp() throws IOException {
         this.socket = new Socket("127.0.0.1", 9999);
         initComponents();
+        Dimension objDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int iCoordX = (objDimension.width - this.getWidth()) / 2;
+        int iCoordY = (objDimension.height - this.getHeight()) / 2;
+        this.setLocation(iCoordX, iCoordY);
     }
 
     public NewSignUp(String str){
@@ -221,45 +229,7 @@ public class NewSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_sign_upBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
-        String userName = this.userName.getText();
-        String password = this.userPassword.getText();
-        if("".equals(userName)){
-           JOptionPane.showMessageDialog(jLabel3,
-                "UserName không được để trống",
-                "Error UserName",
-                JOptionPane.ERROR_MESSAGE);
-        }else if("".equals(password)){
-           JOptionPane.showMessageDialog(jLabel3,
-                "Password không được để trống",
-                "Error Password",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
-            System.out.println("check");
-            String up = createAccountMessage(userName,password);
-            try {
-                sendMessageToServer("1",socket);
-            } catch (Exception e) {
-                System.out.println("can't send choice message");
-            }
-            try {
-                sendMessageToServer(up,socket);
-            } catch (Exception e) {
-                System.out.println("can't send message to server");
-            }
-            InputStream istream = null;
-            try {
-                istream = socket.getInputStream();
-            } catch (IOException ex) {
-                Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
-            try {
-                checkOutPut(receiveRead,socket,user);
-            } catch (Exception e) {
-                System.out.println("can't check out put");
-            }
-        }            
+        // TODO add your handling code here:            
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void userNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameFocusGained
@@ -272,6 +242,37 @@ public class NewSignUp extends javax.swing.JFrame {
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
         // TODO add your handling code here:
+        String userName = this.userName.getText();
+        String password = this.userPassword.getText();      
+        if("".equals(userName)){
+           JOptionPane.showMessageDialog(jLabel3,
+                "UserName không được để trống",
+                "Error UserName",
+                JOptionPane.ERROR_MESSAGE);
+        }else if("".equals(password)){
+           JOptionPane.showMessageDialog(jLabel3,
+                "Password không được để trống",
+                "Error Password",
+                JOptionPane.ERROR_MESSAGE);
+        }else{
+//            System.out.println("check");
+            String passwordHard = getSHAHash(password);
+            String up = createAccountMessage(userName,passwordHard);
+            try {
+                sendMessageToServer("login",socket);
+                sendMessageToServer(up,socket);
+            } catch (Exception e) {
+                System.out.println("can't send choice message");
+            }          
+            try {
+                InputStream istream = null;
+                istream = socket.getInputStream();
+                BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
+                checkOutPut(receiveRead,socket,user);
+            } catch (IOException ex) {
+                Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_loginBtnMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -319,7 +320,23 @@ public class NewSignUp extends javax.swing.JFrame {
         });
     }
     
-    
+    public static String getSHAHash(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String convertByteToHex(byte[] data) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < data.length; i++) {
+            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
     
     public void startLayout() throws IOException{
         account user = new account();   
@@ -372,9 +389,14 @@ public class NewSignUp extends javax.swing.JFrame {
             System.out.println(receiveMessage); // displaying at DOS prompt
             if(receiveMessage.equals("Login successfully: Welcome to PC COVID")){
                 System.out.println("\n--HOME PAGE--");
-                dispose();
+//                dispose();
+//                inputTheUser(receiveMessage, user1);
+                account user1 = new account();
+                receivedMeessageFromServer(user1);
+                
                 HomePage homePage = new HomePage();
-                homePage.startLayout(socket);
+                homePage.startLayout(socket,user1);
+                dispose();
             }else{
                 JOptionPane.showMessageDialog(jPanel3,
                     receiveMessage,
@@ -382,6 +404,48 @@ public class NewSignUp extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             }
         }
+    }
+
+    public void receivedMeessageFromServer(account user){
+        InputStream istream = null;
+        try {
+            istream = socket.getInputStream();
+        } catch (IOException ex) {
+            Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
+        try {
+                checkOutPut1(receiveRead,socket,user);
+        } catch (Exception e) {
+                System.out.println("can't check out put receivedMeessageFromServer");
+        }
+    }
+
+    private void checkOutPut1(BufferedReader receiveRead, Socket socket, account user) throws IOException {
+        String receiveMessage;
+        receiveMessage = String.valueOf(receiveRead.readLine());
+        receiveMessage = removeNonAscii(receiveMessage);
+        receiveMessage = replaceUnreadable(receiveMessage);
+        if(!Objects.equals(receiveMessage, "0")) //receive from server
+        {
+            System.out.print("from server: ");
+            System.out.println(receiveMessage); // displaying at DOS prompt
+            inputTheUser(receiveMessage, user);
+        }
+    }
+
+    private void inputTheUser(String receiveMessage, account user) {
+        String[] listInfor = receiveMessage.split("_");
+        user.setIdUser(listInfor[0]);
+        user.setFirstName(listInfor[1]);
+        user.setLastname(listInfor[2]);
+        user.setCardId(listInfor[3]);
+        user.setBirthOfDay(listInfor[4]);
+        user.setGender(listInfor[5]);
+        user.setNumberPhone(listInfor[6]);
+        user.setEmail(listInfor[7]);
+        user.setAddress(listInfor[8]);
+        user.setState(listInfor[9]);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

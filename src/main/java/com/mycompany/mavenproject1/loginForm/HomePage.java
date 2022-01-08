@@ -27,7 +27,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -36,14 +38,25 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
+import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.input.PanMouseInputListener;
+import org.jxmapviewer.input.ZoomMouseWheelListenerCenter;
+import org.jxmapviewer.viewer.DefaultTileFactory;
+import org.jxmapviewer.viewer.GeoPosition;
+import org.jxmapviewer.viewer.TileFactoryInfo;
+import org.jxmapviewer.viewer.WaypointPainter;
 
 import ortherLayout.panelHistoryPage;
 import ortherLayout.panelProfilePage;
 import ortherLayout.panelQrCodePage;
 import ortherLayout.panelUpdatePage;
+import waypoint.EventWaypoint;
+import waypoint.MyWaypoint;
+import waypoint.WaypointRender;
 
 /**
  *
@@ -51,7 +64,7 @@ import ortherLayout.panelUpdatePage;
  */
 public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFactory{
     private Socket socket;
-    private account user = new account();
+    public account user = new account();
     private panelHomePage homePage = new panelHomePage();
 
     private WebcamPanel panel = null;
@@ -60,18 +73,70 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private static final long serialVersionUID = 6441489157408381878L;
     private Executor executor = Executors.newSingleThreadExecutor(this);
 
+    private final Set<MyWaypoint> waypoints = new HashSet<>();
+    private EventWaypoint event;
     /**
      * Creates new form HomePage
      */
-    public HomePage(Socket socket) throws IOException {
+    public HomePage(Socket socket,account user) throws IOException {
 //        setLocation(null);
+        this.user = user;
         this.socket = socket;
         initComponents();
+        Dimension objDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int iCoordX = (objDimension.width - this.getWidth()) / 2;
+        int iCoordY = (objDimension.height - this.getHeight()) / 2;
+        this.setLocation(iCoordX, iCoordY);
         menuClicked(panelHomePage);
-        receivedMeessageFromServer(this.user);      
+        this.firstName.setText(this.user.getFirstName());
+        this.idUser.setText(this.user.getIdUser());  
+//        receivedMeessageFromServer(this.user);
     }
 
     public HomePage(){}
+
+    private void init(ArrayList<LocationOfF0> listLocationOfF0){
+        TileFactoryInfo info = new OSMTileFactoryInfo();
+        DefaultTileFactory tileFactory = new DefaultTileFactory(info);
+        jXMapViewer1.setTileFactory(tileFactory);
+        GeoPosition geo = new GeoPosition(21.022819, 105.840568);
+        jXMapViewer1.setAddressLocation(geo);
+        jXMapViewer1.setZoom(4);
+
+        MouseInputListener mouse = new PanMouseInputListener(jXMapViewer1);
+        jXMapViewer1.addMouseListener(mouse);
+        jXMapViewer1.addMouseMotionListener(mouse);
+        jXMapViewer1.addMouseWheelListener((new ZoomMouseWheelListenerCenter(jXMapViewer1)));
+        if(!listLocationOfF0.isEmpty()){
+            for(int i = 0; i < listLocationOfF0.size(); i++){    
+                addWaypoint(new MyWaypoint(listLocationOfF0.get(i).getLocation(), event, new GeoPosition(Float.parseFloat(listLocationOfF0.get(i).getLongitude()), Float.parseFloat(listLocationOfF0.get(i).getLatitude()))));
+            }
+        }
+
+//        addWaypoint(new MyWaypoint("Test 001", event, new GeoPosition(21.005082, 105.843500)));
+//        addWaypoint(new MyWaypoint("Test 002", event, new GeoPosition(21.003439, 105.833705)));
+//        event = getEvent();
+    }
+    
+    private void addWaypoint(MyWaypoint waypoint) {
+        for (MyWaypoint d : waypoints) {
+            jXMapViewer1.remove(d.getButton());
+        }
+        waypoints.add(waypoint);
+        initWaypoint();
+    }
+
+    private void initWaypoint() {
+        WaypointPainter<MyWaypoint> wp = new WaypointRender();
+        wp.setWaypoints(waypoints);
+        jXMapViewer1.setOverlayPainter(wp);
+        for (MyWaypoint d : waypoints) {
+            jXMapViewer1.add(d.getButton());
+        }
+    }
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,10 +174,13 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         paneHistory = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        paneUpdate = new javax.swing.JPanel();
+        paneMap = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        paneUpdate = new javax.swing.JPanel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         panelNotificationPage = new javax.swing.JPanel();
@@ -124,8 +192,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel72 = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        waringMessage = new javax.swing.JTextPane();
+        waringMessage = new javax.swing.JLabel();
         panelHomePage = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -180,6 +247,16 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel65 = new javax.swing.JLabel();
         historyScroll = new javax.swing.JScrollPane();
         tableHistory = new javax.swing.JTable();
+        panelMap = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jLabel78 = new javax.swing.JLabel();
+        jPanel16 = new javax.swing.JPanel();
+        jXMapViewer1 = new org.jxmapviewer.JXMapViewer();
+        jLabel79 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
         panelUpdatePage = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -283,7 +360,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 logOutbtnMouseEntered(evt);
             }
         });
-        sidepane.add(logOutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 750, 170, 52));
+        sidepane.add(logOutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 770, 170, 52));
 
         paneNotification.setBackground(new java.awt.Color(152, 234, 217));
         paneNotification.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -315,7 +392,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel66.setText("Notification");
         paneNotification.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
-        sidepane.add(paneNotification, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 380, 60));
+        sidepane.add(paneNotification, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 380, 60));
 
         paneHome.setBackground(new java.awt.Color(152, 234, 217));
         paneHome.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -361,7 +438,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        sidepane.add(paneHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 380, 60));
+        sidepane.add(paneHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 380, 60));
 
         paneProfile.setBackground(new java.awt.Color(152, 234, 217));
         paneProfile.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -409,7 +486,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        sidepane.add(paneProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 380, 60));
+        sidepane.add(paneProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 380, 60));
 
         paneQrCode.setBackground(new java.awt.Color(152, 234, 217));
         paneQrCode.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -459,7 +536,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addGap(6, 6, 6))
         );
 
-        sidepane.add(paneQrCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 380, 60));
+        sidepane.add(paneQrCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 380, 60));
 
         paneHistory.setBackground(new java.awt.Color(152, 234, 217));
         paneHistory.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -507,7 +584,62 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        sidepane.add(paneHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 380, 60));
+        sidepane.add(paneHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 380, 60));
+
+        paneMap.setBackground(new java.awt.Color(152, 234, 217));
+        paneMap.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        paneMap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                paneMapMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                paneMapMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paneMapMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                paneMapMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                paneMapMouseEntered(evt);
+            }
+        });
+
+        jLabel15.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/netbean/mavenproject1/src/main/java/icon/icons8-map-64 (1) (1).png")); // NOI18N
+        jLabel15.setText("jLabel15");
+
+        jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 29)); // NOI18N
+        jLabel16.setForeground(java.awt.Color.white);
+        jLabel16.setText("Map");
+
+        javax.swing.GroupLayout paneMapLayout = new javax.swing.GroupLayout(paneMap);
+        paneMap.setLayout(paneMapLayout);
+        paneMapLayout.setHorizontalGroup(
+            paneMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneMapLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel16)
+                .addContainerGap(175, Short.MAX_VALUE))
+        );
+        paneMapLayout.setVerticalGroup(
+            paneMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneMapLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(paneMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)))
+        );
+
+        sidepane.add(paneMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 380, 60));
+
+        jLabel20.setBackground(java.awt.Color.white);
+        jLabel20.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
+        jLabel20.setForeground(java.awt.Color.white);
+        jLabel20.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
+        sidepane.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 47, -1, 17));
 
         paneUpdate.setBackground(new java.awt.Color(152, 234, 217));
         paneUpdate.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -529,12 +661,12 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-update-left-rotation-50 (1).png")); // NOI18N
-        jLabel15.setText("jLabel15");
+        jLabel71.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-update-left-rotation-50 (1).png")); // NOI18N
+        jLabel71.setText("jLabel15");
 
-        jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
-        jLabel16.setForeground(java.awt.Color.white);
-        jLabel16.setText("Update");
+        jLabel74.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
+        jLabel74.setForeground(java.awt.Color.white);
+        jLabel74.setText("Update");
 
         javax.swing.GroupLayout paneUpdateLayout = new javax.swing.GroupLayout(paneUpdate);
         paneUpdate.setLayout(paneUpdateLayout);
@@ -542,9 +674,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             paneUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneUpdateLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel16)
+                .addComponent(jLabel74)
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         paneUpdateLayout.setVerticalGroup(
@@ -552,17 +684,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneUpdateLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(paneUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)))
+                    .addComponent(jLabel71, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel74)))
         );
 
-        sidepane.add(paneUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 380, 60));
-
-        jLabel20.setBackground(java.awt.Color.white);
-        jLabel20.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
-        jLabel20.setForeground(java.awt.Color.white);
-        jLabel20.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
-        sidepane.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 47, -1, 17));
+        sidepane.add(paneUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 680, -1, -1));
 
         jPanel1.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 840));
 
@@ -616,9 +742,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jPanel13.setBackground(java.awt.Color.white);
 
-        waringMessage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(220, 153, 141), 3));
         waringMessage.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jScrollPane1.setViewportView(waringMessage);
+        waringMessage.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        waringMessage.setAlignmentX(5.0F);
+        waringMessage.setAlignmentY(5.0F);
+        waringMessage.setBorder(new javax.swing.border.LineBorder(java.awt.Color.red, 3, true));
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -626,14 +754,14 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addComponent(waringMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+            .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addComponent(waringMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -991,6 +1119,76 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jPanel2.add(panelHistoryPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
 
+        panelMap.setBackground(new java.awt.Color(220, 153, 141));
+        panelMap.setPreferredSize(new java.awt.Dimension(991, 888));
+        panelMap.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel14.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+
+        panelMap.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 1010, -1));
+
+        jLabel75.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        panelMap.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 12, -1, -1));
+
+        jLabel76.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        panelMap.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
+
+        jLabel77.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel77.setForeground(java.awt.Color.white);
+        jLabel77.setText("PC COVID");
+        panelMap.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 56, -1, -1));
+
+        jLabel78.setBackground(java.awt.Color.white);
+        jLabel78.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 18)); // NOI18N
+        jLabel78.setForeground(java.awt.Color.white);
+        jLabel78.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
+        panelMap.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, 17));
+
+        javax.swing.GroupLayout jXMapViewer1Layout = new javax.swing.GroupLayout(jXMapViewer1);
+        jXMapViewer1.setLayout(jXMapViewer1Layout);
+        jXMapViewer1Layout.setHorizontalGroup(
+            jXMapViewer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 940, Short.MAX_VALUE)
+        );
+        jXMapViewer1Layout.setVerticalGroup(
+            jXMapViewer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jXMapViewer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jXMapViewer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panelMap.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 940, 500));
+
+        jLabel79.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 36)); // NOI18N
+        jLabel79.setForeground(java.awt.Color.white);
+        jLabel79.setText("Bản đồ địa điểm Covid 19");
+        panelMap.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
+
+        jLabel80.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-map-64.png")); // NOI18N
+        panelMap.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 80, 60));
+
+        jPanel2.add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
+
         panelUpdatePage.setBackground(new java.awt.Color(220, 153, 141));
         panelUpdatePage.setPreferredSize(new java.awt.Dimension(991, 888));
         panelUpdatePage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1181,14 +1379,16 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void logOutbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutbtnMouseClicked
         // TODO add your handling code here:
-            closeWebcam();
+//        closeWebcam();
+//        if(this.webcam.isOpen()==true){
+//            webcam.close();
+//        }       
         int result = JOptionPane.showConfirmDialog(panelHomePage,
                         "Bạn đã có muốn thoát PC COVID?",
                         "Xác nhận",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
         if(result == JOptionPane.YES_OPTION){
-
             dispose();
             try {
                 sendMessageToServer("5",socket);
@@ -1199,12 +1399,12 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             NewSignUp login = null;
             login = new NewSignUp("");
             try {
+
                 login.startLayout();
             } catch (Exception e) {
                 System.out.println("can't start NewSignUp layout");
             }
-        }
-               
+        }              
     }//GEN-LAST:event_logOutbtnMouseClicked
 
     private void paneHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneHomeMouseEntered
@@ -1286,25 +1486,25 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         paneHistory.setBackground(new Color(220,153,141));
     }//GEN-LAST:event_paneHistoryMouseReleased
 
-    private void paneUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseEntered
+    private void paneMapMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneMapMouseEntered
         // TODO add your handling code here:
-        paneUpdate.setBackground(new Color(220,153,141));
-    }//GEN-LAST:event_paneUpdateMouseEntered
+        paneMap.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneMapMouseEntered
 
-    private void paneUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseExited
+    private void paneMapMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneMapMouseExited
         // TODO add your handling code here:
-        paneUpdate.setBackground(new Color(152,234,217));
-    }//GEN-LAST:event_paneUpdateMouseExited
+        paneMap.setBackground(new Color(152,234,217));
+    }//GEN-LAST:event_paneMapMouseExited
 
-    private void paneUpdateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMousePressed
+    private void paneMapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneMapMousePressed
         // TODO add your handling code here:
-        paneUpdate.setBackground(new Color(220,153,141));
-    }//GEN-LAST:event_paneUpdateMousePressed
+        paneMap.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneMapMousePressed
 
-    private void paneUpdateMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseReleased
+    private void paneMapMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneMapMouseReleased
         // TODO add your handling code here:
-        paneUpdate.setBackground(new Color(220,153,141));
-    }//GEN-LAST:event_paneUpdateMouseReleased
+        paneMap.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneMapMouseReleased
 
     private void paneHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneHomeMouseClicked
         // TODO add your handling code here:
@@ -1346,18 +1546,32 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_paneProfileMouseClicked
 
-    private void paneUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseClicked
+    private void paneMapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneMapMouseClicked
         // TODO add your handling code here:
-        try {
-            menuClicked(panelUpdatePage);
-            setInformationUpdateAccount();
+        try {           
+            menuClicked(panelMap);        
+//            init();
+            sendMessageToServer("7", socket);
+            InputStream istream = null;
+            try {
+                istream = socket.getInputStream();
+            } catch (IOException ex) {
+                Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
+            try {
+                checkOutPutStringLocation(receiveRead,socket);
+            } catch (Exception e) {
+                System.out.println("can't check out put");
+            }
             if(webcam.isOpen()){
-                closeWebcam();
+                webcam.close();
             } 
         } catch (Exception e) {
-            System.out.println("can't start layout paneUpdateMouseClicked");
+            System.out.println("can't start layout paneMapClicked\n"+ e);
+            
         }
-    }//GEN-LAST:event_paneUpdateMouseClicked
+    }//GEN-LAST:event_paneMapMouseClicked
 
     private void paneQrCodeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneQrCodeMouseClicked
         // TODO add your handling code here:
@@ -1431,9 +1645,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             menuClicked(panelHistoryPage);
             sendMessageToServer("3", socket);
             showHistory();
-            if(webcam.isOpen()){
-                closeWebcam();
-            }            
+            closeWebcam();          
         } catch (Exception e) {
             System.out.println("can't start layout paneHistoryMouseClicked");
         }
@@ -1472,6 +1684,38 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
         paneNotification.setBackground(new Color(220,153,141));
     }//GEN-LAST:event_paneNotificationMouseEntered
+
+    private void paneUpdateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMousePressed
+        // TODO add your handling code here:
+        paneUpdate.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneUpdateMousePressed
+
+    private void paneUpdateMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseReleased
+        // TODO add your handling code here:
+        paneUpdate.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneUpdateMouseReleased
+
+    private void paneUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseClicked
+        // TODO add your handling code here:
+        try {
+            menuClicked(panelUpdatePage);
+            setInformationUpdateAccount();
+            if(webcam.isOpen()){
+                closeWebcam();
+            }            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_paneUpdateMouseClicked
+
+    private void paneUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseExited
+        // TODO add your handling code here:
+        paneUpdate.setBackground(new Color(152,234,217));
+    }//GEN-LAST:event_paneUpdateMouseExited
+
+    private void paneUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneUpdateMouseEntered
+        // TODO add your handling code here:
+        paneUpdate.setBackground(new Color(220,153,141));
+    }//GEN-LAST:event_paneUpdateMouseEntered
 
     /**
      * @param args the command line arguments
@@ -1643,11 +1887,11 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         return s.replaceAll("\\P{Print}", "");
     }
    
-    public void startLayout(Socket socket){
+    public void startLayout(Socket socket, account user){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new HomePage(socket).setVisible(true);
+                    new HomePage(socket,user).setVisible(true);                    
                 } catch (Exception e) {
                 }              
             }
@@ -1655,6 +1899,8 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     }
 
     public void menuClicked(JPanel jpanel) throws IOException{
+//        setTextNameAndId(this.user);
+        panelMap.setVisible(false);
         panelHomePage.setVisible(false);
         panelProfilePage.setVisible(false);
         panelUpdatePage.setVisible(false);
@@ -1722,6 +1968,45 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }
 
+    private void checkOutPutStringLocation(BufferedReader receiveRead, Socket socket) throws IOException {
+        String receiveMessage;
+        receiveMessage = String.valueOf(receiveRead.readLine());
+        receiveMessage = removeNonAscii(receiveMessage);
+        receiveMessage = replaceUnreadable(receiveMessage);
+        if(!Objects.equals(receiveMessage, "0")) //receive from server
+        {
+            System.out.print("from server: ");
+            System.out.println(receiveMessage); // displaying at DOS prompt
+            inputTheLocationOfF0(receiveMessage);
+        }
+    }
+
+    private void inputTheLocationOfF0(String receiveMessage) {
+        ArrayList<LocationOfF0> listLocationOfF0 = new ArrayList<LocationOfF0>();
+        if(receiveMessage.equals("khong co dia diem")){
+            init(listLocationOfF0);
+        }else{
+            int index = 0;
+            for(int i = 0; i < receiveMessage.length(); i++){
+               if(receiveMessage.charAt(i)=='_'){
+                   index++;
+                }
+            }
+
+            String[] listInfor = receiveMessage.split("_");
+            for(int i = 0; i < (index+1); i++){
+                LocationOfF0 locationIndex = new LocationOfF0();
+                String[] longitude = listInfor[i].split("@");
+                locationIndex.setLocation(longitude[0]);
+                String[] latitude = longitude[1].split("!");
+                locationIndex.setLongitude(latitude[0]);
+                locationIndex.setLatitude(latitude[1]);
+                listLocationOfF0.add(locationIndex);
+            }
+            init(listLocationOfF0);
+        }
+    }
+
     private void checkOutPut(BufferedReader receiveRead, Socket socket, account user) throws IOException {
         String receiveMessage;
         receiveMessage = String.valueOf(receiveRead.readLine());
@@ -1732,6 +2017,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             System.out.print("from server: ");
             System.out.println(receiveMessage); // displaying at DOS prompt
             inputTheUser(receiveMessage, user);
+        }else{
+            ArrayList<LocationOfF0> listLocationOfF0 = new ArrayList<LocationOfF0>();
+            init(listLocationOfF0);
         }
     }
 
@@ -1946,15 +2234,25 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1963,7 +2261,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private org.jxmapviewer.JXMapViewer jXMapViewer1;
     private javax.swing.JTextField lastNameUpdate;
     private javax.swing.JButton logOutbtn;
     private javax.swing.JRadioButton namBtnUpdate;
@@ -1972,12 +2270,14 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JTextField numberPhoneUpdate;
     private javax.swing.JPanel paneHistory;
     private javax.swing.JPanel paneHome;
+    private javax.swing.JPanel paneMap;
     private javax.swing.JPanel paneNotification;
     private javax.swing.JPanel paneProfile;
     private javax.swing.JPanel paneQrCode;
     private javax.swing.JPanel paneUpdate;
     private javax.swing.JPanel panelHistoryPage;
     private javax.swing.JPanel panelHomePage;
+    private javax.swing.JPanel panelMap;
     private javax.swing.JPanel panelNotificationPage;
     private javax.swing.JPanel panelProfilePage;
     private javax.swing.JPanel panelQrCodePage;
@@ -1987,6 +2287,6 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel sidepane;
     private javax.swing.JLabel state;
     private javax.swing.JTable tableHistory;
-    private javax.swing.JTextPane waringMessage;
+    private javax.swing.JLabel waringMessage;
     // End of variables declaration//GEN-END:variables
 }
