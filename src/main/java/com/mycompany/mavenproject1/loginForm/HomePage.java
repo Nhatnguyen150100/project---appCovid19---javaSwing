@@ -192,6 +192,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel72 = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         waringMessage = new javax.swing.JLabel();
         panelHomePage = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -293,7 +294,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         sidepane.setBackground(new java.awt.Color(116, 214, 193));
         sidepane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-128 (3).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-128 (3).png")); // NOI18N
         sidepane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 12, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -317,7 +318,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         sidepane.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 70, 390, 10));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-user-128.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-user-128.png")); // NOI18N
         jLabel4.setText("jLabel4");
         sidepane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 127, 112));
 
@@ -383,7 +384,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         });
         paneNotification.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel63.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/icons8-notification-60 (1).png")); // NOI18N
+        jLabel63.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-notification-60 (1).png")); // NOI18N
         jLabel63.setText("jLabel7");
         paneNotification.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 49, -1));
 
@@ -414,7 +415,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-home-50 (1).png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-home-50 (1).png")); // NOI18N
         jLabel7.setText("jLabel7");
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
@@ -460,7 +461,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-information-64 (1).png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-information-64 (1).png")); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
         jLabel10.setForeground(java.awt.Color.white);
@@ -508,7 +509,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-qr-code-64 (1).png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-qr-code-64 (1).png")); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
         jLabel12.setForeground(java.awt.Color.white);
@@ -558,7 +559,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-history-64 (1).png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-history-64 (1).png")); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
         jLabel14.setForeground(java.awt.Color.white);
@@ -606,7 +607,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/netbean/mavenproject1/src/main/java/icon/icons8-map-64 (1) (1).png")); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-map-64 (1) (1).png")); // NOI18N
         jLabel15.setText("jLabel15");
 
         jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 29)); // NOI18N
@@ -661,7 +662,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
-        jLabel71.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-update-left-rotation-50 (1).png")); // NOI18N
+        jLabel71.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-update-left-rotation-50 (1).png")); // NOI18N
         jLabel71.setText("jLabel15");
 
         jLabel74.setFont(new java.awt.Font("Ubuntu", 1, 27)); // NOI18N
@@ -715,10 +716,10 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelNotificationPage.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 1013, -1));
 
-        jLabel67.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        jLabel67.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
         panelNotificationPage.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
 
-        jLabel68.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        jLabel68.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
         panelNotificationPage.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel69.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
@@ -737,7 +738,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel72.setText("Thông báo");
         panelNotificationPage.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
 
-        jLabel73.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/icons8-notification-94.png")); // NOI18N
+        jLabel73.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-notification-94.png")); // NOI18N
         panelNotificationPage.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         jPanel13.setBackground(java.awt.Color.white);
@@ -747,22 +748,17 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         waringMessage.setAlignmentX(5.0F);
         waringMessage.setAlignmentY(5.0F);
         waringMessage.setBorder(new javax.swing.border.LineBorder(java.awt.Color.red, 3, true));
+        jScrollPane1.setViewportView(waringMessage);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(waringMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(waringMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
         );
 
         panelNotificationPage.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 720, 460));
@@ -787,10 +783,10 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelHomePage.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 1013, -1));
 
-        jLabel18.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
         panelHomePage.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
         panelHomePage.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
@@ -812,7 +808,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel22.setText("Thực hiện quy định 5K");
         panelHomePage.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
-        jLabel37.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-attention-96.png")); // NOI18N
+        jLabel37.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-attention-96.png")); // NOI18N
         panelHomePage.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
         jPanel2.add(panelHomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, 840));
@@ -836,10 +832,10 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelProfilePage.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 991, -1));
 
-        jLabel38.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        jLabel38.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
         panelProfilePage.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(571, 12, -1, -1));
 
-        jLabel39.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        jLabel39.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
         panelProfilePage.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel40.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
@@ -945,7 +941,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelProfilePage.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 322, 412, -1));
 
-        jLabel51.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-list-100.png")); // NOI18N
+        jLabel51.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-list-100.png")); // NOI18N
         panelProfilePage.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 246, -1, -1));
 
         jPanel2.add(panelProfilePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
@@ -968,10 +964,10 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelQrCodePage.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 1013, -1));
 
-        jLabel28.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
         panelQrCodePage.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
 
-        jLabel54.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        jLabel54.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
         panelQrCodePage.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel55.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
@@ -990,13 +986,13 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel58.setText("Quét QR  để thực hiện khai báo y tế");
         panelQrCodePage.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
 
-        jLabel59.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-qr-code-100.png")); // NOI18N
+        jLabel59.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-qr-code-100.png")); // NOI18N
         panelQrCodePage.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 112, 135));
 
         camera.setBackground(java.awt.Color.white);
         camera.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        qrBtn.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/6498715_application_code_mobile_qr_smartphone_icon (1) (1).png")); // NOI18N
+        qrBtn.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/6498715_application_code_mobile_qr_smartphone_icon (1) (1).png")); // NOI18N
         qrBtn.setBorder(null);
         qrBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1029,9 +1025,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        jLabel57.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        jLabel57.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
 
-        jLabel60.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        jLabel60.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
 
         jLabel61.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         jLabel61.setForeground(java.awt.Color.white);
@@ -1046,7 +1042,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel64.setForeground(java.awt.Color.white);
         jLabel64.setText("Lịch sử di chuyển của bạn:");
 
-        jLabel65.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Desktop/5728208_flight_route_tourism_transmit_travel_icon.png")); // NOI18N
+        jLabel65.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/5728208_flight_route_tourism_transmit_travel_icon.png")); // NOI18N
 
         historyScroll.setBackground(java.awt.Color.white);
         historyScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -1138,10 +1134,10 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelMap.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 1010, -1));
 
-        jLabel75.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        jLabel75.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
         panelMap.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 12, -1, -1));
 
-        jLabel76.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        jLabel76.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
         panelMap.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel77.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
@@ -1184,7 +1180,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel79.setText("Bản đồ địa điểm Covid 19");
         panelMap.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
 
-        jLabel80.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-map-64.png")); // NOI18N
+        jLabel80.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-map-64.png")); // NOI18N
         panelMap.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 80, 60));
 
         jPanel2.add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, -1));
@@ -1208,10 +1204,10 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelUpdatePage.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 1010, -1));
 
-        jLabel23.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/pngwing.com (1).png")); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
         panelUpdatePage.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 12, -1, -1));
 
-        jLabel24.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-100.png")); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
         panelUpdatePage.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
@@ -1280,7 +1276,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelUpdatePage.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 322, 425, -1));
 
-        jLabel36.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-list-100.png")); // NOI18N
+        jLabel36.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-list-100.png")); // NOI18N
         panelUpdatePage.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 246, -1, -1));
 
         firstNameUpdate.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
@@ -2261,6 +2257,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private org.jxmapviewer.JXMapViewer jXMapViewer1;
     private javax.swing.JTextField lastNameUpdate;
     private javax.swing.JButton logOutbtn;

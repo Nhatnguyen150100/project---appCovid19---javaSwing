@@ -79,7 +79,7 @@ public class NewSignUp extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(116, 214, 193));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Pictures/backgroud.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/backgroud.png")); // NOI18N
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
@@ -146,10 +146,10 @@ public class NewSignUp extends javax.swing.JFrame {
         jSeparator2.setForeground(java.awt.Color.white);
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 350, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Pictures/icons8-password-100 (1).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-password-100 (1).png")); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 50, 60));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Pictures/icons8-user-48.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-user-48.png")); // NOI18N
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 50, 60));
 
         sign_upBtn.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N

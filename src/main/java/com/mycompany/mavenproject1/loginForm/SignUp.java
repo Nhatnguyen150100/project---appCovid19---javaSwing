@@ -21,13 +21,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author nhatnguyen
  */
 public class SignUp extends javax.swing.JFrame {
+
     Socket socketSignUp;
+
     /**
      * Creates new form Home
      */
@@ -42,7 +43,6 @@ public class SignUp extends javax.swing.JFrame {
 
     public SignUp() {
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +75,7 @@ public class SignUp extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(116, 214, 193));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Pictures/backgroud.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/backgroud.png")); // NOI18N
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
@@ -142,21 +142,17 @@ public class SignUp extends javax.swing.JFrame {
         jSeparator2.setForeground(java.awt.Color.white);
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 350, 30));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Pictures/icons8-password-100 (1).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-password-100 (1).png")); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 50, 60));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Pictures/icons8-user-48.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-user-48.png")); // NOI18N
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 50, 60));
 
         sign_upBtn.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         sign_upBtn.setText("Sign up");
         sign_upBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-                    sign_upBtnMouseClicked(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sign_upBtnMouseClicked(evt);
             }
         });
         sign_upBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -184,21 +180,17 @@ public class SignUp extends javax.swing.JFrame {
         });
         jPanel3.add(confirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 350, 50));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Pictures/icons8-password-48.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-password-48.png")); // NOI18N
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 50, 60));
 
         jSeparator3.setBackground(java.awt.Color.white);
         jSeparator3.setForeground(java.awt.Color.white);
         jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 350, 30));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-back-48.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-back-48.png")); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-                    jButton1MouseClicked(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                jButton1MouseClicked(evt);
             }
         });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -272,48 +264,48 @@ public class SignUp extends javax.swing.JFrame {
         newUserName = userName.getText();
         newPassword = userPassword.getText();
         confirmPassword = this.confirmPassword.getText();
-        if("".equals(newUserName)){
-           JOptionPane.showMessageDialog(jLabel3,
-                "UserName không được để trống",
-                "Error UserName",
-                JOptionPane.ERROR_MESSAGE);
-        }else if("".equals(newPassword)){
-           JOptionPane.showMessageDialog(jLabel3,
-                "Password không được để trống",
-                "Error Password",
-                JOptionPane.ERROR_MESSAGE);
-        }else if("".equals(confirmPassword)){
-           JOptionPane.showMessageDialog(jLabel3,
-                "Confirm password không được để trống",
-                "Error cofirm password",
-                JOptionPane.ERROR_MESSAGE);
-        }else if(!newPassword.equals(confirmPassword)){
+        if ("".equals(newUserName)) {
             JOptionPane.showMessageDialog(jLabel3,
-                "Password không trùng nhau!",
-                "Error Confirm Password",
-                JOptionPane.ERROR_MESSAGE);
-        }else{
+                    "UserName không được để trống",
+                    "Error UserName",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if ("".equals(newPassword)) {
+            JOptionPane.showMessageDialog(jLabel3,
+                    "Password không được để trống",
+                    "Error Password",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if ("".equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(jLabel3,
+                    "Confirm password không được để trống",
+                    "Error cofirm password",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if (!newPassword.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(jLabel3,
+                    "Password không trùng nhau!",
+                    "Error Confirm Password",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
             int result = JOptionPane.showConfirmDialog(jLabel3,
-                        "Bạn muốn tạo một tài khoản mới với tên đăng nhập và mật khẩu như trên",
-                        "Xác nhận",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-            if(result == JOptionPane.YES_OPTION){
+                    "Bạn muốn tạo một tài khoản mới với tên đăng nhập và mật khẩu như trên",
+                    "Xác nhận",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
                 try {
-                    sendMessageToServer("2",socketSignUp);
+                    sendMessageToServer("2", socketSignUp);
                 } catch (Exception e) {
                     System.out.println("can't send choice(2) to Server");
                 }
-                
+
                 InputStream istream = socketSignUp.getInputStream();
                 BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
                 String hardPassword = getSHAHash(newPassword);
                 String newAccountMessage = createAccountMessage(newUserName, hardPassword);
                 try {
                     sendMessageToServer(newAccountMessage, socketSignUp);
-                    checkOutPut(receiveRead,socketSignUp);
+                    checkOutPut(receiveRead, socketSignUp);
                 } catch (Exception e) {
-                }    
+                }
             }
         }
 
@@ -354,8 +346,7 @@ public class SignUp extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
-    public void startLayout(Socket socket){
+    public void startLayout(Socket socket) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SignUp(socket).setVisible(true);
@@ -379,9 +370,9 @@ public class SignUp extends javax.swing.JFrame {
         pwrite.println(str);       // sending to server
         pwrite.flush();            // flush the data
     }
-    
-    private String createAccountMessage(String name, String password){
-        return name+ "_" +password;
+
+    private String createAccountMessage(String name, String password) {
+        return name + "_" + password;
     }
 
     private void checkOutPut(BufferedReader receiveRead, Socket socket) throws IOException {
@@ -389,37 +380,37 @@ public class SignUp extends javax.swing.JFrame {
         receiveMessage = String.valueOf(receiveRead.readLine());
         receiveMessage = removeNonAscii(receiveMessage);
         receiveMessage = replaceUnreadable(receiveMessage);
-        if(!receiveMessage.equals("")) //receive from server
+        if (!receiveMessage.equals("")) //receive from server
         {
             System.out.print("from server: ");
             System.out.println(receiveMessage); // displaying at DOS prompt
-            if(receiveMessage.equals("Create a account successfully: Please enter personal information")){
+            if (receiveMessage.equals("Create a account successfully: Please enter personal information")) {
 //                String idUserFromSerVer = String.valueOf(receiveRead.readLine());
 //                idUserFromSerVer = removeNonAscii(idUserFromSerVer);
 //                idUserFromSerVer = replaceUnreadable(idUserFromSerVer);
                 dispose();
                 SignUpInfor signInfor = new SignUpInfor();
                 signInfor.startLayout(socketSignUp);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(jPanel3,
-                    receiveMessage,
-                    "From Server",
-                    JOptionPane.INFORMATION_MESSAGE);
+                        receiveMessage,
+                        "From Server",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
 
-    private static String removeNonAscii(String s){
+    private static String removeNonAscii(String s) {
         StringBuffer sb = new StringBuffer();
-        for(int i=0; i<s.length(); ++i){
-            if(s.charAt(i) < 128){
+        for (int i = 0; i < s.length(); ++i) {
+            if (s.charAt(i) < 128) {
                 sb.append(s.charAt(i));
             }
         }
         return sb.toString();
     }
 
-    private static String replaceUnreadable(String s){
+    private static String replaceUnreadable(String s) {
         return s.replaceAll("\\P{Print}", "");
     }
 

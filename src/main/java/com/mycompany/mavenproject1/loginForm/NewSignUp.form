@@ -95,7 +95,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/nhatnguyen/Pictures/backgroud.png"/>
+                  <Image iconType="2" name="/home/nhatnguyen/anh/backgroud.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -211,7 +211,7 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/nhatnguyen/Pictures/icons8-password-100 (1).png"/>
+                  <Image iconType="2" name="/home/nhatnguyen/anh/icons8-password-100 (1).png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -223,7 +223,7 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/nhatnguyen/Pictures/icons8-user-48.png"/>
+                  <Image iconType="2" name="/home/nhatnguyen/anh/icons8-user-48.png"/>
                 </Property>
               </Properties>
               <Constraints>

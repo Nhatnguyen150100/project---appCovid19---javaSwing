@@ -62,7 +62,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-128 (3).png"/>
+                  <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-128 (3).png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -118,7 +118,7 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-user-128.png"/>
+                  <Image iconType="2" name="/home/nhatnguyen/anh/icons8-user-128.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jLabel4"/>
               </Properties>
@@ -247,7 +247,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel63">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/nhatnguyen/Desktop/icons8-notification-60 (1).png"/>
+                      <Image iconType="2" name="/home/nhatnguyen/anh/icons8-notification-60 (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="jLabel7"/>
                   </Properties>
@@ -322,7 +322,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-home-50 (1).png"/>
+                      <Image iconType="2" name="/home/nhatnguyen/anh/icons8-home-50 (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="jLabel7"/>
                   </Properties>
@@ -391,7 +391,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-information-64 (1).png"/>
+                      <Image iconType="2" name="/home/nhatnguyen/anh/icons8-information-64 (1).png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -463,7 +463,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-qr-code-64 (1).png"/>
+                      <Image iconType="2" name="/home/nhatnguyen/anh/icons8-qr-code-64 (1).png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -531,7 +531,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-history-64 (1).png"/>
+                      <Image iconType="2" name="/home/nhatnguyen/anh/icons8-history-64 (1).png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -600,7 +600,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/nhatnguyen/netbean/mavenproject1/src/main/java/icon/icons8-map-64 (1) (1).png"/>
+                      <Image iconType="2" name="/home/nhatnguyen/anh/icons8-map-64 (1) (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="jLabel15"/>
                   </Properties>
@@ -689,7 +689,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel71">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-update-left-rotation-50 (1).png"/>
+                      <Image iconType="2" name="/home/nhatnguyen/anh/icons8-update-left-rotation-50 (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="jLabel15"/>
                   </Properties>
@@ -803,7 +803,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel67">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/pngwing.com (1).png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/pngwing.com (1).png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -815,7 +815,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel68">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -878,7 +878,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel73">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Desktop/icons8-notification-94.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-notification-94.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -902,41 +902,39 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="waringMessage" pref="696" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jScrollPane1" alignment="0" pref="720" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="waringMessage" pref="436" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jScrollPane1" alignment="0" pref="460" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="waringMessage">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Ubuntu" size="24" style="1"/>
-                            </Property>
-                            <Property name="verticalAlignment" type="int" value="1"/>
-                            <Property name="alignmentX" type="float" value="5.0"/>
-                            <Property name="alignmentY" type="float" value="5.0"/>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                                <LineBorder roundedCorners="true" thickness="3">
-                                  <Color PropertyName="color" blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
-                                </LineBorder>
-                              </Border>
-                            </Property>
-                          </Properties>
-                        </Component>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JLabel" name="waringMessage">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Ubuntu" size="24" style="1"/>
+                                </Property>
+                                <Property name="verticalAlignment" type="int" value="1"/>
+                                <Property name="alignmentX" type="float" value="5.0"/>
+                                <Property name="alignmentY" type="float" value="5.0"/>
+                                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                    <LineBorder roundedCorners="true" thickness="3">
+                                      <Color PropertyName="color" blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
+                                    </LineBorder>
+                                  </Border>
+                                </Property>
+                              </Properties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                   </SubComponents>
@@ -985,7 +983,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel18">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/pngwing.com (1).png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/pngwing.com (1).png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -997,7 +995,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1072,7 +1070,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel37">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-attention-96.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-attention-96.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1130,7 +1128,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel38">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/pngwing.com (1).png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/pngwing.com (1).png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1142,7 +1140,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel39">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1478,7 +1476,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel51">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-list-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-list-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1533,7 +1531,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel28">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/pngwing.com (1).png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/pngwing.com (1).png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1545,7 +1543,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel54">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1608,7 +1606,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel59">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-qr-code-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-qr-code-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1636,7 +1634,7 @@
                         <Component class="javax.swing.JButton" name="qrBtn">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="2" name="/home/nhatnguyen/Desktop/6498715_application_code_mobile_qr_smartphone_icon (1) (1).png"/>
+                              <Image iconType="2" name="/home/nhatnguyen/anh/6498715_application_code_mobile_qr_smartphone_icon (1) (1).png"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
@@ -1760,14 +1758,14 @@
                     <Component class="javax.swing.JLabel" name="jLabel57">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/pngwing.com (1).png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/pngwing.com (1).png"/>
                         </Property>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel60">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-100.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1810,7 +1808,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel65">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Desktop/5728208_flight_route_tourism_transmit_travel_icon.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/5728208_flight_route_tourism_transmit_travel_icon.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1906,7 +1904,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel75">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/pngwing.com (1).png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/pngwing.com (1).png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -1918,7 +1916,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel76">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -2018,7 +2016,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel80">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-map-64.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-map-64.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -2076,7 +2074,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel23">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/pngwing.com (1).png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/pngwing.com (1).png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -2088,7 +2086,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel24">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-protect-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-protect-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -2288,7 +2286,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel36">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="/home/nhatnguyen/Downloads/icons8-list-100.png"/>
+                          <Image iconType="2" name="/home/nhatnguyen/anh/icons8-list-100.png"/>
                         </Property>
                       </Properties>
                       <Constraints>

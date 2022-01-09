@@ -94,7 +94,7 @@ public class SignUpInfor extends javax.swing.JFrame {
         jLabel2.setForeground(java.awt.Color.white);
         jLabel2.setText("KHAI BÁO Y TẾ - GIẢM THIỂU LÂY LAN");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/icons8-protect-128.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-128.png")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Noto Serif CJK JP", 1, 36)); // NOI18N
         jLabel4.setForeground(java.awt.Color.white);
@@ -156,11 +156,7 @@ public class SignUpInfor extends javax.swing.JFrame {
         sendInfor.setText("Send your information");
         sendInfor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                try {
-                    sendInforMouseClicked(evt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sendInforMouseClicked(evt);
             }
         });
 
