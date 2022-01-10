@@ -1511,6 +1511,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             } 
         } catch (Exception e) {
             System.out.println("can't start layout paneHomeMouseClicked");
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, e);
         }
         
     }//GEN-LAST:event_paneHomeMouseClicked
@@ -1539,6 +1540,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
             } 
         } catch (Exception e) {
             System.out.println("can't start layout paneProfileMouseClicked");
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_paneProfileMouseClicked
 

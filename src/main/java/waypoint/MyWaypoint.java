@@ -7,6 +7,7 @@ package waypoint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
 
@@ -49,7 +50,7 @@ public class MyWaypoint extends DefaultWaypoint {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                event.selected(MyWaypoint.this);
+                JOptionPane.showMessageDialog(button, name);
             }
         });
     }

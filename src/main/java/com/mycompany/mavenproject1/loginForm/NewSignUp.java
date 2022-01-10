@@ -392,11 +392,19 @@ public class NewSignUp extends javax.swing.JFrame {
 //                dispose();
 //                inputTheUser(receiveMessage, user1);
                 account user1 = new account();
-                receivedMeessageFromServer(user1);
+                receivedMeessageFromServer(receiveRead,user1);
+                if(!user1.getIdUser().equals("")){
+                    HomePage homePage = new HomePage();
+                    homePage.startLayout(socket,user1);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(jPanel3,
+                    "Can't get infor from server!",
+                    "From Server",
+                    JOptionPane.INFORMATION_MESSAGE);
+                }
                 
-                HomePage homePage = new HomePage();
-                homePage.startLayout(socket,user1);
-                dispose();
+
             }else{
                 JOptionPane.showMessageDialog(jPanel3,
                     receiveMessage,
@@ -406,14 +414,14 @@ public class NewSignUp extends javax.swing.JFrame {
         }
     }
 
-    public void receivedMeessageFromServer(account user){
-        InputStream istream = null;
-        try {
-            istream = socket.getInputStream();
-        } catch (IOException ex) {
-            Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
+    public void receivedMeessageFromServer(BufferedReader receiveRead, account user){
+//        InputStream istream = null;
+//        try {
+//            istream = socket.getInputStream();
+//        } catch (IOException ex) {
+//            Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream), 1024);
         try {
                 checkOutPut1(receiveRead,socket,user);
         } catch (Exception e) {
