@@ -50,7 +50,7 @@ public class MyWaypoint extends DefaultWaypoint {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                JOptionPane.showMessageDialog(button, name);
+                JOptionPane.showMessageDialog(button, name,"Location",JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }

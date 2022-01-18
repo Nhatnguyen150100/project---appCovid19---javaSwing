@@ -36,12 +36,13 @@ public class SignUp extends javax.swing.JFrame {
         socketSignUp = socket;
         initComponents();
         Dimension objDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int iCoordX = (objDimension.width - this.getWidth()) / 2;
+        int iCoordX = (objDimension.width - this.getWidth()) / 8;
         int iCoordY = (objDimension.height - this.getHeight()) / 2;
         this.setLocation(iCoordX, iCoordY);
     }
 
     public SignUp() {
+        
     }
 
     /**

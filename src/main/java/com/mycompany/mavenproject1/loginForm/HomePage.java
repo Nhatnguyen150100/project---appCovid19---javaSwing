@@ -4,6 +4,7 @@
  */
 package com.mycompany.mavenproject1.loginForm;
 
+import DataCity.CityHandler;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -84,7 +85,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         this.socket = socket;
         initComponents();
         Dimension objDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int iCoordX = (objDimension.width - this.getWidth()) / 2;
+        int iCoordX = (objDimension.width - this.getWidth()) / 8;
         int iCoordY = (objDimension.height - this.getHeight()) / 2;
         this.setLocation(iCoordX, iCoordY);
         menuClicked(panelHomePage);
@@ -196,13 +197,18 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         waringMessage = new javax.swing.JLabel();
         panelHomePage = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
+        checkLocal = new javax.swing.JButton();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel81 = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel82 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
         panelProfilePage = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
@@ -783,9 +789,6 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelHomePage.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 213, 1013, -1));
 
-        jLabel18.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
-        panelHomePage.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
-
         jLabel17.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-protect-100.png")); // NOI18N
         panelHomePage.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 47, -1, -1));
 
@@ -801,7 +804,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         panelHomePage.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 110, -1, 17));
 
         jLabel21.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/Downloads/—Pngtree—cegah dan tangkal covid-19 dengan_6011555 (2).png")); // NOI18N
-        panelHomePage.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, -1));
+        panelHomePage.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 36)); // NOI18N
         jLabel22.setForeground(java.awt.Color.white);
@@ -810,6 +813,62 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jLabel37.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/icons8-attention-96.png")); // NOI18N
         panelHomePage.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+
+        checkLocal.setBackground(new java.awt.Color(152, 234, 217));
+        checkLocal.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 24)); // NOI18N
+        checkLocal.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/walking.png")); // NOI18N
+        checkLocal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                checkLocalMouseClicked(evt);
+            }
+        });
+        checkLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkLocalActionPerformed(evt);
+            }
+        });
+        panelHomePage.add(checkLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, 250, 210));
+
+        jPanel15.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+
+        panelHomePage.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 10, 620));
+
+        jLabel81.setFont(new java.awt.Font("Noto Serif CJK TC", 1, 28)); // NOI18N
+        jLabel81.setForeground(java.awt.Color.white);
+        jLabel81.setText("Khai báo di chuyển nội địa");
+        panelHomePage.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, -1, -1));
+
+        jPanel17.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        panelHomePage.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 640, 420, 10));
+
+        jLabel82.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
+        panelHomePage.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 660, -1, -1));
+
+        jLabel83.setIcon(new javax.swing.ImageIcon("/home/nhatnguyen/anh/pngwing.com (1).png")); // NOI18N
+        panelHomePage.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 12, -1, -1));
 
         jPanel2.add(panelHomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1013, 840));
 
@@ -1375,7 +1434,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void logOutbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logOutbtnMouseClicked
         // TODO add your handling code here:
-//        closeWebcam();
+        closeWebcam();
 //        if(this.webcam.isOpen()==true){
 //            webcam.close();
 //        }       
@@ -1714,6 +1773,17 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
         paneUpdate.setBackground(new Color(220,153,141));
     }//GEN-LAST:event_paneUpdateMouseEntered
+
+    private void checkLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLocalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkLocalActionPerformed
+
+    private void checkLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkLocalMouseClicked
+        // TODO add your handling code here:
+        System.out.println("City: "+CityHandler.getListCityHandler().get(0).getName());
+        LocalPage localPage = new LocalPage();
+        localPage.startLayout(socket,user);
+    }//GEN-LAST:event_checkLocalMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2156,6 +2226,7 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel camera;
     private javax.swing.JLabel cardId;
     private javax.swing.JTextField cardIdInformationUpdate;
+    private javax.swing.JButton checkLocal;
     private javax.swing.JLabel email;
     private javax.swing.JTextField emailUpdate;
     private javax.swing.JLabel firstName;
@@ -2173,7 +2244,6 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -2243,6 +2313,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -2250,7 +2323,9 @@ public class HomePage extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -19,14 +19,16 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.json.simple.parser.ParseException;
 
 /**
  *
  * @author nhatnguyen
  */
 public class NewSignUp extends javax.swing.JFrame {
-    Socket socket;
-    account user = new account();
+    private account user1 = new account();
+    private Socket socket;
+    private account user = new account();
 
     /**
      * @throws IOException
@@ -35,9 +37,10 @@ public class NewSignUp extends javax.swing.JFrame {
         this.socket = new Socket("127.0.0.1", 9999);
         initComponents();
         Dimension objDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int iCoordX = (objDimension.width - this.getWidth()) / 2;
+        int iCoordX = (objDimension.width - this.getWidth()) / 8;
         int iCoordY = (objDimension.height - this.getHeight()) / 2;
         this.setLocation(iCoordX, iCoordY);
+
     }
 
     public NewSignUp(String str){
@@ -154,6 +157,11 @@ public class NewSignUp extends javax.swing.JFrame {
 
         sign_upBtn.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         sign_upBtn.setText("Sign up");
+        sign_upBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sign_upBtnMouseClicked(evt);
+            }
+        });
         sign_upBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sign_upBtnActionPerformed(evt);
@@ -222,10 +230,6 @@ public class NewSignUp extends javax.swing.JFrame {
 
     private void sign_upBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sign_upBtnActionPerformed
         // TODO add your handling code here:
-        dispose();
-        SignUp sign_up;
-        sign_up = new SignUp();
-        sign_up.startLayout(socket);
     }//GEN-LAST:event_sign_upBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
@@ -271,6 +275,8 @@ public class NewSignUp extends javax.swing.JFrame {
                 checkOutPut(receiveRead,socket,user);
             } catch (IOException ex) {
                 Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_loginBtnMouseClicked
@@ -278,6 +284,14 @@ public class NewSignUp extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
+
+    private void sign_upBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sign_upBtnMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        SignUp sign_up;
+        sign_up = new SignUp();
+        sign_up.startLayout(socket);
+    }//GEN-LAST:event_sign_upBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -310,9 +324,14 @@ public class NewSignUp extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 NewSignUp signUp = null;
+                ReadDataFromJsonFile readDataFromJsonFile = new ReadDataFromJsonFile();
                 try {
+
+                    readDataFromJsonFile.read();
                     signUp = new NewSignUp();
                 } catch (IOException ex) {
+                    Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(NewSignUp.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 signUp.setVisible(true);
@@ -378,7 +397,7 @@ public class NewSignUp extends javax.swing.JFrame {
         return s.replaceAll("\\P{Print}", "");
     }
 
-    private void checkOutPut(BufferedReader receiveRead, Socket socket, account user) throws IOException {
+    private void checkOutPut(BufferedReader receiveRead, Socket socket, account user) throws IOException, InterruptedException {
         String receiveMessage;
         receiveMessage = String.valueOf(receiveRead.readLine());
         receiveMessage = removeNonAscii(receiveMessage);
@@ -391,20 +410,18 @@ public class NewSignUp extends javax.swing.JFrame {
                 System.out.println("\n--HOME PAGE--");
 //                dispose();
 //                inputTheUser(receiveMessage, user1);
-                account user1 = new account();
                 receivedMeessageFromServer(receiveRead,user1);
                 if(!user1.getIdUser().equals("")){
+                    dispose();
                     HomePage homePage = new HomePage();
                     homePage.startLayout(socket,user1);
-                    dispose();
+
                 }else{
                     JOptionPane.showMessageDialog(jPanel3,
                     "Can't get infor from server!",
                     "From Server",
                     JOptionPane.INFORMATION_MESSAGE);
-                }
-                
-
+                }              
             }else{
                 JOptionPane.showMessageDialog(jPanel3,
                     receiveMessage,
